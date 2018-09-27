@@ -15,6 +15,22 @@
         android:textColor="@android:color/holo_purple"
         android:textSize="50sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="67dp" />
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="59dp" />
+
+    <Button
+        android:id="@+id/REGISTRATION"
+        android:layout_width="151dp"
+        android:layout_height="61dp"
+        android:text="REGISTRATION"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="333dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="161dp"
+        android:layout_height="58dp"
+        android:text="LOGIN"
+        tools:layout_editor_absoluteX="204dp"
+        tools:layout_editor_absoluteY="333dp" />
 </android.support.constraint.ConstraintLayout>
