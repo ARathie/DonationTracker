@@ -76,4 +76,10 @@
         </LinearLayout>
     </ScrollView>
 
+    <Button
+        android:id="@+id/cancelLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Cancel" />
+
 </LinearLayout>
