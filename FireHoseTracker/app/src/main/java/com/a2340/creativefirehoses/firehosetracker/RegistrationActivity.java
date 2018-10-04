@@ -13,7 +13,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        Button buttonCancel = (Button) findViewById(R.id.cancelRegistration);
+        Button buttonCancel = (Button) findViewById(R.id.cancel_button);
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent (RegistrationActivity.this, WelcomeActivity.class);
