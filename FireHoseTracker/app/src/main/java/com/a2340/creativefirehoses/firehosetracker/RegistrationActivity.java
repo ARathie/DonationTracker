@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.a2340.creativefirehoses.firehosetracker.UserList;
 
+
 public class RegistrationActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
         public void onClick(View v) {
             String username = editUsername.getText().toString();
             String password = editPassword.getText().toString();
+
             if (UserList.containsUser(username)) {
                 CharSequence error_username_exists = "Username already exists.";
                 editUsername.setError(error_username_exists);
