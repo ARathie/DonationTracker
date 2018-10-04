@@ -7,7 +7,7 @@
     tools:context=".WelcomeActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/USERNAME"
         android:layout_width="355dp"
         android:layout_height="225dp"
         android:layout_marginBottom="8dp"

@@ -7,15 +7,19 @@ public class UserList {
 
     UserList() {
         if (users == null) {
-            users = new HashMap();
+            users = new HashMap<>();
         }
+    }
+
+    public static boolean containsUser(String username) {
+        return users.containsKey(username);
     }
 
     public static String getPassword(String username) {
         return users.get(username);
     }
 
-    public static void setPassword(String username, String password) {
+    public static void addUser(String username, String password) {
         users.put(username, password);
     }
 
