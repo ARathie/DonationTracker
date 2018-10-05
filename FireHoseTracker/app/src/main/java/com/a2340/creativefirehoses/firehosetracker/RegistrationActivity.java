@@ -4,9 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
 import com.a2340.creativefirehoses.firehosetracker.UserList;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -26,6 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         final EditText editUsername = (EditText) findViewById(R.id.student_username_input);
         final EditText editPassword = (EditText) findViewById(R.id.student_pass_input);
+        Spinner accountType = (Spinner) findViewById(R.id.accountType);
 
         Button buttonRegister = (Button) findViewById(R.id.register_button);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -33,7 +40,17 @@ public class RegistrationActivity extends AppCompatActivity {
             String username = editUsername.getText().toString();
             String password = editPassword.getText().toString();
 
-            if (UserList.containsUser(username)) {
+            if (username.length() == 0) {
+                CharSequence error_username_blank = "Please enter username.";
+                editUsername.setError(error_username_blank);
+                editUsername.requestFocus();
+            }
+            else if (password.length() == 0) {
+                CharSequence error_password_blank = "Please enter password.";
+                editPassword.setError(error_password_blank);
+                editPassword.requestFocus();
+            }
+            else if (UserList.containsUser(username)) {
                 CharSequence error_username_exists = "Username already exists.";
                 editUsername.setError(error_username_exists);
                 editUsername.requestFocus();
@@ -44,5 +61,10 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         }
         });
+
+        List<String> accounts = Arrays.asList("User", "Local Employee", "Manager", "Admin");
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, accounts);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        accountType.setAdapter(adapter);
     }
 }
