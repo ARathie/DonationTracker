@@ -36,4 +36,9 @@
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="230dp" />
 
+    <ListView
+        android:id="@+id/location_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+
 </android.support.constraint.ConstraintLayout>

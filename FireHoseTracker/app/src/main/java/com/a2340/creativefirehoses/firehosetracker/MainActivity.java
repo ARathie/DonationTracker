@@ -1,8 +1,12 @@
 package com.a2340.creativefirehoses.firehosetracker;
 
+import android.app.ListActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.content.Intent;
 import java.io.BufferedReader;
@@ -12,7 +16,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 
-public class MainActivity  extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private Button buttonLogOut;
 
@@ -28,30 +32,51 @@ public class MainActivity  extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
-    /**
-     * Button handler for the load button
-     *
-     * @param view  the actual button object that was pressed
-     */
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//    /**
+//     * Button handler for the load button
+//     *
+//     * @param view  the actual button object that was pressed
+//     */
     public void onLoadButtonPressed(View view) {
         readSDFile();
         Intent intent = new Intent(this, LocationItemListActivity.class);
         startActivity(intent);
     }
 
-    public static final int LOCATION_NAME = 0;
-    public static final int LATITUDE = 1;
-    public static final int LONGITUDE = 2;
-    public static final int STREET_ADDRESS = 3;
-    public static final int CITY = 4;
-    public static final int STATE = 5;
-    public static final int ZIP = 6;
-    public static final int TYPE = 7;
-    public static final int PHONE_NUM = 8;
-    public static final int WEBSITE = 9;
+    public static final int LOCATION_NAME = 1;
+    public static final int LATITUDE = 2;
+    public static final int LONGITUDE = 3;
+    public static final int STREET_ADDRESS = 4;
+    public static final int CITY = 5;
+    public static final int STATE = 6;
+    public static final int ZIP = 7;
+    public static final int TYPE = 8;
+    public static final int PHONE_NUM = 9;
+    public static final int WEBSITE = 10;
     /**
      * Open the sample.csv file in the /res/raw directory
      * Line Entry format:
@@ -72,9 +97,9 @@ public class MainActivity  extends AppCompatActivity {
             br.readLine(); //get rid of header line
             while ((line = br.readLine()) != null) {
                 String[] tokens = line.split(",");
-                model.addItem(new LocationItem(tokens[LOCATION_NAME], Double.valueOf(tokens[LATITUDE]),
-                        Double.valueOf(tokens[LONGITUDE]), tokens[STREET_ADDRESS], tokens[CITY], tokens[STATE],
-                        Integer.valueOf(tokens[ZIP]), tokens[TYPE], tokens[PHONE_NUM], tokens[WEBSITE]));
+                model.addItem(new LocationItem(tokens[LOCATION_NAME], tokens[LATITUDE],
+                        tokens[LONGITUDE], tokens[STREET_ADDRESS], tokens[CITY], tokens[STATE],
+                        tokens[ZIP], tokens[TYPE], tokens[PHONE_NUM], tokens[WEBSITE]));
             }
             br.close();
         } catch (IOException e) {
