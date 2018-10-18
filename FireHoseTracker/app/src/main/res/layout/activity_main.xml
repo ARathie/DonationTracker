@@ -28,11 +28,10 @@
         app:layout_constraintVertical_bias="0.014" />
 
     <Button
-        android:id="@+id/load_button"
+        android:id="@+id/view_all_locations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onLoadButtonPressed"
-        android:text="Load the File"
+        android:text="View All Locations"
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="230dp" />
 

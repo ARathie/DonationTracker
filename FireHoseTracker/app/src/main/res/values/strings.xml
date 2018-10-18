@@ -20,4 +20,5 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="title_activity_location_model">LocationModel</string>
+    <string name="title_activity_view_locations">ViewLocationsActivity</string>
 </resources>
