@@ -3,7 +3,7 @@ package com.a2340.creativefirehoses.firehosetracker;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.widget.ArrayAdapter;
-
+import android.widget.ListView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,9 +19,10 @@ public class ViewLocationsActivity extends ListActivity {
 
         readSDFile();
         LocationModel model = LocationModel.INSTANCE;
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getListView().getContext(),
+        ListView list = getListView();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, model.getLocationNames());
-        getListView().setAdapter(adapter);
+        list.setAdapter(adapter);
 
     }
 
