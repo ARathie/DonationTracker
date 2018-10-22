@@ -1,7 +1,11 @@
 package com.a2340.creativefirehoses.firehosetracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.ListActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.io.BufferedReader;
@@ -10,7 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-public class ViewLocationsActivity extends ListActivity {
+public class ViewLocationsActivity extends ListActivity implements AdapterView.OnItemClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +27,16 @@ public class ViewLocationsActivity extends ListActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, model.getLocationNames());
         list.setAdapter(adapter);
+        list.setOnItemClickListener(this);
+    }
 
+    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+        Log.i("LocationListView", "You clicked Item: " + id + " at position:" + position);
+        // Then you start a new Activity via Intent
+        Intent intent = new Intent();
+        intent.setClass(this, LocationItemDetail.class);
+        intent.putExtra("position", position);
+        startActivity(intent);
     }
 
     public static final int LOCATION_NAME = 1;
