@@ -16,12 +16,17 @@ import java.nio.charset.StandardCharsets;
 
 public class ViewLocationsActivity extends ListActivity implements AdapterView.OnItemClickListener{
 
+    private static boolean parsed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_locations);
 
-        readSDFile();
+        if(!parsed) {
+            readSDFile();
+            parsed = true;
+        }
         LocationModel model = LocationModel.INSTANCE;
         ListView list = getListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,

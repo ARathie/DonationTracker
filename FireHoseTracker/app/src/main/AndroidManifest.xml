@@ -31,6 +31,8 @@
             android:name=".ViewLocationsActivity"
             android:label="@string/title_activity_view_locations"></activity>
         <activity android:name=".LocationItemDetail" />
+        <activity android:name=".ViewDonationsActivity" />
+        <activity android:name=".DonationDetail" />
     </application>
 
 </manifest>

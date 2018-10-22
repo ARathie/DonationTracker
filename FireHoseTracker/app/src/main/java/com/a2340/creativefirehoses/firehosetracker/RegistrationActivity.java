@@ -32,13 +32,19 @@ public class RegistrationActivity extends AppCompatActivity {
 
         final EditText editUsername = (EditText) findViewById(R.id.student_username_input);
         final EditText editPassword = (EditText) findViewById(R.id.student_pass_input);
-        Spinner accountType = (Spinner) findViewById(R.id.accountType);
+        final Spinner accountType = (Spinner) findViewById(R.id.accountType);
+
+        List<String> accounts = Arrays.asList("User", "Location Employee", "Manager", "Admin");
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, accounts);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        accountType.setAdapter(adapter);
 
         Button buttonRegister = (Button) findViewById(R.id.register_button);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
             String username = editUsername.getText().toString();
             String password = editPassword.getText().toString();
+            String type = accountType.getSelectedItem().toString();
 
             if (username.length() == 0) {
                 CharSequence error_username_blank = "Please enter username.";
@@ -55,16 +61,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 editUsername.setError(error_username_exists);
                 editUsername.requestFocus();
             } else {
-                UserList.addUser(username, password);
+                UserList.addUser(username, password, type);
                 Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         }
         });
 
-        List<String> accounts = Arrays.asList("User", "Local Employee", "Manager", "Admin");
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, accounts);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        accountType.setAdapter(adapter);
     }
 }

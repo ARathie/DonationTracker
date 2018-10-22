@@ -1,5 +1,8 @@
 package com.a2340.creativefirehoses.firehosetracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LocationItem {
     private String locationName;
     private String latitude;
@@ -11,6 +14,8 @@ public class LocationItem {
     private String type;
     private String phoneNum;
     private String website;
+    private List<DonationItem> donationList;
+    private List<String> donationNames;
 
     public LocationItem(String locationName, String latitude, String longitude,
                         String streetAddress, String city, String state,
@@ -25,12 +30,24 @@ public class LocationItem {
         this.type = type;
         this.phoneNum = phoneNum;
         this.website = website;
+        donationList = new ArrayList<>();
+        donationNames = new ArrayList<>();
     }
 
 
     public String toString() {
         return locationName;
     }
+    public void addDonation(DonationItem donation) {
+        donationList.add(donation);
+        donationNames.add(donation.getDonationName());
+    }
+    public void removeDonation(DonationItem donation) {
+        donationList.remove(donation);
+        donationNames.remove(donation.getDonationName());
+    }
+    public List<DonationItem> getDonationList(){ return donationList; }
+    public List<String> getDonationNames(){ return donationNames; }
 
     public String getLocationName() { return locationName; }
     public String getLatitude() { return latitude; }
