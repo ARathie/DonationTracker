@@ -60,10 +60,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 CharSequence error_username_exists = "Username already exists.";
                 editUsername.setError(error_username_exists);
                 editUsername.requestFocus();
+            } else if (type.equals("Location Employee")){
+                UserList.addUser(username, password, type);
+                Intent intent = new Intent(RegistrationActivity.this, AddEmployeeLocation.class);
+                startActivity(intent);
             } else {
                 UserList.addUser(username, password, type);
                 Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
-                intent.putExtra("currentUser", username);
                 startActivity(intent);
             }
         }

@@ -36,6 +36,7 @@
         <activity
             android:name=".AddDonationActivity"
             android:label="@string/title_activity_add_donation"></activity>
+        <activity android:name=".AddEmployeeLocation" />
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ViewDonationsActivity extends ListActivity implements AdapterView.OnItemClickListener{
 
@@ -20,10 +21,15 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
 
         Intent intent = getIntent();
         locationPosition = intent.getIntExtra("locationPosition", 0);
-        String currentUser = intent.getStringExtra("currentUser");
+        String currentUser = UserList.getCurrentUser();
 
         LocationModel model = LocationModel.INSTANCE;
         LocationItem currentLocation = model.getLocations().get(locationPosition);
+
+        TextView noDonations = (TextView) findViewById(R.id.no_donations);
+        if(currentLocation.getDonationNames().size() >= 1){
+            noDonations.setVisibility(View.GONE);
+        }
 
         ListView list = getListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -40,10 +46,16 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
             }
         });
 
-//        if (!UserList.getType(currentUser).equals("Location Employee")
-//                && !UserList.getType(currentUser).equals("Manager")) {
-//            addDonation.setVisibility(View.GONE);
-//        }
+        addDonation.setVisibility(View.GONE);
+
+        if (UserList.getType(currentUser).equals("Location Employee")
+                || UserList.getType(currentUser).equals("Manager")) {
+            if ((UserList.getType(currentUser).equals("Location Employee")
+                    && UserList.getLocation(currentUser).equals(currentLocation.getLocationName()))
+                    || UserList.getType(currentUser).equals("Manager")) {
+                addDonation.setVisibility(View.VISIBLE);
+            }
+        }
 
     }
 

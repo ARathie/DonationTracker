@@ -16,7 +16,6 @@ public class LocationItemDetail extends Activity {
 
         Intent intent = getIntent();
         final int locationPosition = intent.getIntExtra("locationPosition", 0);
-        final String currentUser = intent.getStringExtra("currentUser");
 
         LocationModel model = LocationModel.INSTANCE;
         LocationItem currentLocation = model.getLocations().get(locationPosition);
@@ -56,7 +55,6 @@ public class LocationItemDetail extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent (LocationItemDetail.this, ViewDonationsActivity.class);
                 intent.putExtra("locationPosition", locationPosition);
-                intent.putExtra("currentUser", currentUser);
                 startActivity(intent);
             }
         });
@@ -66,7 +64,7 @@ public class LocationItemDetail extends Activity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.setClass(this, LocationItemDetail.class);
+        intent.setClass(this, ViewLocationsActivity.class);
         startActivity(intent);
     }
 }
