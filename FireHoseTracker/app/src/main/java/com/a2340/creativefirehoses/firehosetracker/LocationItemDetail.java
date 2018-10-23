@@ -15,10 +15,11 @@ public class LocationItemDetail extends Activity {
         setContentView(R.layout.activity_locationdetail);
 
         Intent intent = getIntent();
-        final int position = intent.getIntExtra("position", 0);
+        final int locationPosition = intent.getIntExtra("locationPosition", 0);
+        final String currentUser = intent.getStringExtra("currentUser");
 
         LocationModel model = LocationModel.INSTANCE;
-        LocationItem currentLocation = model.getLocations().get(position);
+        LocationItem currentLocation = model.getLocations().get(locationPosition);
 
         TextView locationName = (TextView) findViewById(R.id.location_name);
         locationName.setText("Location Name: " + currentLocation.getLocationName());
@@ -54,9 +55,18 @@ public class LocationItemDetail extends Activity {
         viewDonations.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent (LocationItemDetail.this, ViewDonationsActivity.class);
-                intent.putExtra("position", position);
+                intent.putExtra("locationPosition", locationPosition);
+                intent.putExtra("currentUser", currentUser);
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.setClass(this, LocationItemDetail.class);
+        startActivity(intent);
     }
 }

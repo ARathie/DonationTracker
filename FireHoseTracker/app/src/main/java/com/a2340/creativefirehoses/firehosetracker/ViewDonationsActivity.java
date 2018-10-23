@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class ViewDonationsActivity extends ListActivity implements AdapterView.OnItemClickListener{
@@ -15,10 +16,11 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_locations);
+        setContentView(R.layout.activity_view_donations);
 
         Intent intent = getIntent();
-        locationPosition = intent.getIntExtra("position", 0);
+        locationPosition = intent.getIntExtra("locationPosition", 0);
+        String currentUser = intent.getStringExtra("currentUser");
 
         LocationModel model = LocationModel.INSTANCE;
         LocationItem currentLocation = model.getLocations().get(locationPosition);
@@ -28,6 +30,21 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
                 android.R.layout.simple_list_item_1, currentLocation.getDonationNames());
         list.setAdapter(adapter);
         list.setOnItemClickListener(this);
+
+        Button addDonation = (Button) findViewById(R.id.add_donation);
+        addDonation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent (ViewDonationsActivity.this, AddDonationActivity.class);
+                intent.putExtra("locationPosition", locationPosition);
+                startActivity(intent);
+            }
+        });
+
+//        if (!UserList.getType(currentUser).equals("Location Employee")
+//                && !UserList.getType(currentUser).equals("Manager")) {
+//            addDonation.setVisibility(View.GONE);
+//        }
+
     }
 
     public void onItemClick(AdapterView<?> l, View v, int donationPosition, long id) {
@@ -36,6 +53,14 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
         Intent intent = new Intent();
         intent.setClass(this, DonationDetail.class);
         intent.putExtra("donationPosition", donationPosition);
+        intent.putExtra("locationPosition", locationPosition);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.setClass(this, LocationItemDetail.class);
         intent.putExtra("locationPosition", locationPosition);
         startActivity(intent);
     }

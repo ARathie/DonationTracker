@@ -27,16 +27,16 @@ public class DonationDetail extends Activity {
         timeStamp.setText("Time Stamp: " + currentDonation.getTimeStamp());
 
         TextView location = (TextView) findViewById(R.id.location);
-        location.setText("Longitude: " + currentDonation.getLocation());
+        location.setText("Location: " + currentDonation.getLocation());
 
         TextView fullDescription = (TextView) findViewById(R.id.full_descrip);
         fullDescription.setText("Full Description: " + currentDonation.getFullDescrip());
 
         TextView value = (TextView) findViewById(R.id.value);
-        value.setText("City: " + currentDonation.getValue());
+        value.setText("Value: " + currentDonation.getValue());
 
         TextView category = (TextView) findViewById(R.id.category);
-        category.setText("State: " + currentDonation.getCategory());
+        category.setText("Category: " + currentDonation.getCategory());
 
     }
 }

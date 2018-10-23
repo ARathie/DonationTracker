@@ -17,11 +17,15 @@ import java.nio.charset.StandardCharsets;
 public class ViewLocationsActivity extends ListActivity implements AdapterView.OnItemClickListener{
 
     private static boolean parsed = false;
+    private String currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_locations);
+
+        Intent intent = getIntent();
+        currentUser = intent.getStringExtra("currentUser");
 
         if(!parsed) {
             readSDFile();
@@ -35,12 +39,13 @@ public class ViewLocationsActivity extends ListActivity implements AdapterView.O
         list.setOnItemClickListener(this);
     }
 
-    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-        Log.i("LocationListView", "You clicked Item: " + id + " at position:" + position);
+    public void onItemClick(AdapterView<?> l, View v, int locationPosition, long id) {
+        Log.i("LocationListView", "You clicked Item: " + id + " at position:" + locationPosition);
         // Then you start a new Activity via Intent
         Intent intent = new Intent();
         intent.setClass(this, LocationItemDetail.class);
-        intent.putExtra("position", position);
+        intent.putExtra("locationPosition", locationPosition);
+        intent.putExtra("currentUser", currentUser);
         startActivity(intent);
     }
 

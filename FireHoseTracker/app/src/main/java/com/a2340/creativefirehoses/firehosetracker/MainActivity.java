@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        final String currentUser = intent.getStringExtra("currentUser");
+
         Button buttonLogOut = (Button) findViewById(R.id.buttonLogOut);
         buttonLogOut.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         viewAllLocations.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent (MainActivity.this, ViewLocationsActivity.class);
+                intent.putExtra("currentUser", currentUser);
                 startActivity(intent);
             }
         });

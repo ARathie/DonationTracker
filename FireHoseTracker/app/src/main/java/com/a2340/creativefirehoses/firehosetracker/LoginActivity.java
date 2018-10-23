@@ -341,6 +341,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (UserList.containsUser(mUsername) && UserList.getPassword(mUsername).equals(mPassword)) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("currentUser", mUsername);
                 startActivity(intent);
             } else {
                 CharSequence error_invalid = "Invalid username or password.";

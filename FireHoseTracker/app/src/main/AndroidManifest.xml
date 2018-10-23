@@ -29,10 +29,13 @@
         <activity android:name=".RegistrationActivity" />
         <activity
             android:name=".ViewLocationsActivity"
-            android:label="@string/title_activity_view_locations"></activity>
+            android:label="@string/title_activity_view_locations" />
         <activity android:name=".LocationItemDetail" />
         <activity android:name=".ViewDonationsActivity" />
         <activity android:name=".DonationDetail" />
+        <activity
+            android:name=".AddDonationActivity"
+            android:label="@string/title_activity_add_donation"></activity>
     </application>
 
 </manifest>

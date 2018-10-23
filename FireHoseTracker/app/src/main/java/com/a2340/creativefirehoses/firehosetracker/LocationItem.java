@@ -40,11 +40,11 @@ public class LocationItem {
     }
     public void addDonation(DonationItem donation) {
         donationList.add(donation);
-        donationNames.add(donation.getDonationName());
+        donationNames.add(donation.getDonationName() + " - " + donation.getShortDescrip());
     }
     public void removeDonation(DonationItem donation) {
         donationList.remove(donation);
-        donationNames.remove(donation.getDonationName());
+        donationNames.remove(donation.getDonationName() + " - " + donation.getShortDescrip());
     }
     public List<DonationItem> getDonationList(){ return donationList; }
     public List<String> getDonationNames(){ return donationNames; }

@@ -63,6 +63,7 @@ public class RegistrationActivity extends AppCompatActivity {
             } else {
                 UserList.addUser(username, password, type);
                 Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                intent.putExtra("currentUser", username);
                 startActivity(intent);
             }
         }
