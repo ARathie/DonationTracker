@@ -22,22 +22,21 @@ public class AddEmployeeLocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_employee_location);
 
-        final EditText employeeLocation = (EditText) findViewById(R.id.employee_location);
+        final Spinner employeeLocation = (Spinner) findViewById(R.id.employee_location);
+        LocationModel model = LocationModel.INSTANCE;
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationNames());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        employeeLocation.setAdapter(adapter);
 
         Button buttonSubmit = (Button) findViewById(R.id.submit_button);
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String eLocation = employeeLocation.getText().toString();
+                String eLocation = employeeLocation.getSelectedItem().toString();
 
-                if (eLocation.length() == 0) {
-                    CharSequence error_location_blank = "Please enter a location.";
-                    employeeLocation.setError(error_location_blank);
-                    employeeLocation.requestFocus();
-                } else {
-                    UserList.addLocation(UserList.getCurrentUser(), eLocation);
-                    Intent intent = new Intent(AddEmployeeLocation.this, MainActivity.class);
-                    startActivity(intent);
-                }
+                UserList.addLocation(UserList.getCurrentUser(), eLocation);
+                Intent intent = new Intent(AddEmployeeLocation.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

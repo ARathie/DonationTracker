@@ -31,8 +31,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -65,6 +67,14 @@ public class AddDonationActivity extends AppCompatActivity {
 
         final EditText donationName = (EditText) findViewById(R.id.donation_name);
         final EditText shortDescrip = (EditText) findViewById(R.id.short_descrip);
+        final EditText fullDescrip = (EditText) findViewById(R.id.full_descrip);
+        final EditText value = (EditText) findViewById(R.id.value);
+        final Spinner category = (Spinner) findViewById(R.id.category);
+
+        List<String> accounts = Arrays.asList("Clothing", "Hat", "Kitchen", "Electronics", "Household", "Other");
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, accounts);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category.setAdapter(adapter);
 
 
         Button addDonation = (Button) findViewById(R.id.add_donation);
@@ -72,6 +82,13 @@ public class AddDonationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String dName = donationName.getText().toString();
                 String shortDes = shortDescrip.getText().toString();
+                String fullDes = fullDescrip.getText().toString();
+                String val = "$" + value.getText().toString();
+                String ctgry = category.getSelectedItem().toString();
+
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+                String strDate = sdf.format(c.getTime());
 
                 if (dName.length() == 0) {
                     CharSequence error_donation_name_blank = "Please enter the donation name.";
@@ -83,9 +100,19 @@ public class AddDonationActivity extends AppCompatActivity {
                     shortDescrip.setError(error_short_descrip_blank);
                     shortDescrip.requestFocus();
                 }
+                else if (fullDes.length() == 0) {
+                    CharSequence error_full_descrip_blank = "Please enter a full description.";
+                    fullDescrip.setError(error_full_descrip_blank);
+                    fullDescrip.requestFocus();
+                }
+                else if (val.length() == 0) {
+                    CharSequence error_val_blank = "Please enter a value.";
+                    value.setError(error_val_blank);
+                    value.requestFocus();
+                }
                 else {
-                    currentLocation.addDonation(new DonationItem(dName, "timestamp", "location", shortDes,
-                            "fullDescrip", "value", "category"));
+                    currentLocation.addDonation(new DonationItem(dName, strDate, currentLocation.getLocationName(),
+                            shortDes, fullDes, val, ctgry));
                     Intent intent = new Intent (AddDonationActivity.this, ViewDonationsActivity.class);
                     intent.putExtra("locationPosition", locationPosition);
                     startActivity(intent);

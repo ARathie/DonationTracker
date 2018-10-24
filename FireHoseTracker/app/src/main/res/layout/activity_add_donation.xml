@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/donation_name_text"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp" />
+        android:layout_marginTop="5dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
         android:inputType="text"
         android:ems="10"
         android:id="@+id/donation_name"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="3dp"
         android:layout_below="@+id/donation_name_text"
         android:layout_alignParentStart="true" />
 
@@ -37,7 +37,7 @@
         android:id="@+id/short_descrip_text"
         android:layout_below="@+id/donation_name"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
+        android:layout_marginTop="3dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -45,9 +45,70 @@
         android:inputType="text"
         android:ems="10"
         android:id="@+id/short_descrip"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="3dp"
         android:layout_below="@+id/short_descrip_text"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Full Description:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/full_descrip_text"
+        android:layout_below="@+id/short_descrip"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp" />
+
+    <EditText
+        android:id="@+id/full_descrip"
+        android:layout_below="@+id/full_descrip_text"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="1"
+        android:gravity="top|left"
+        android:maxLines="5"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:scrollbars="vertical" />
+
+    <TextView
+        android:text="Value:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/value_text"
+        android:layout_below="@+id/full_descrip"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp" />
+
+    <EditText
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/value_text"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp" />
+
+    <TextView
+        android:text="Category:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/category_text"
+        android:layout_below="@+id/value"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/category_text"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp"
+        android:id="@+id/category"
+        android:layout_centerHorizontal="true"
+        />
 
     <Button
         android:text="Cancel"
@@ -64,6 +125,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/add_donation"
-        android:layout_alignParentBottom="true" android:layout_marginBottom="63dp" />
+        android:layout_below="@+id/category"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp" />
 
 </RelativeLayout>
