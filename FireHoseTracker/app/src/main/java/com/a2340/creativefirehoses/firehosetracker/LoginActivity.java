@@ -3,7 +3,9 @@ package com.a2340.creativefirehoses.firehosetracker;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -338,8 +340,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
-            if (UserList.containsUser(mUsername) && UserList.getPassword(mUsername).equals(mPassword)) {
+            SharedPreferences sharedPref = getSharedPreferences("userList", Context.MODE_PRIVATE);
+            boolean usernameStored = sharedPref.contains(mUsername);
+            String storedPassword = sharedPref.getString(mUsername, "notStored");
+            if ((usernameStored && storedPassword.equals(mPassword)) || (UserList.containsUser(mUsername) && UserList.getPassword(mUsername).equals(mPassword))) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             } else {

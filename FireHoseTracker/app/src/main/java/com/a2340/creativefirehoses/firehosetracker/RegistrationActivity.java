@@ -1,6 +1,8 @@
 package com.a2340.creativefirehoses.firehosetracker;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -66,6 +68,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 UserList.addUser(username, password, type);
+                SharedPreferences sharedPref = getSharedPreferences("userList", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(username, password);
+                editor.apply();
                 Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                 startActivity(intent);
             }
