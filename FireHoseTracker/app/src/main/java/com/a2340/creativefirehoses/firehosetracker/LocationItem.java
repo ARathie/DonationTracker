@@ -2,6 +2,7 @@ package com.a2340.creativefirehoses.firehosetracker;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -45,13 +46,13 @@ public class LocationItem {
         this.website = website;
         donationList = new ArrayList<>();
         donationNames = new ArrayList<>();
-
-//        SharedPreferences sharedPref = getSharedPreferences("donationList", Context.MODE_PRIVATE);
-//        Map<String, ?> storedDonations = sharedPref.getAll();
-//        // StringSet that is the values in the Map. Index 0: strDate, 1: currentLocation.getLocationName(), 2: shortDes, 3: fullDes, 4: val, 5: ctgry)
-//        for (String name : storedDonations.keySet()) {
-//            donationNames.add(name + " - " + storedDonations.get(name).toArray());
-//            donationList.add
+        Cursor cursor = WelcomeActivity.itemsDB.getItemsFromLocation(this.locationName);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            donationNames.add(cursor.getString(cursor.getColumnIndex("itemName")) + " - " + cursor.getString(cursor.getColumnIndex("shortDescription")));
+            addToDonationList(new DonationItem(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)));
+            cursor.moveToNext();
+        }
 
     }
 
@@ -60,31 +61,15 @@ public class LocationItem {
         return locationName;
     }
     public void addDonation(DonationItem donation) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> newDonation = new HashMap<>();
-        newDonation.put("name", donation.getDonationName());
-        newDonation.put("date", donation.getTimeStamp());
-        newDonation.put("location", donation.getLocation());
-        newDonation.put("short description", donation.getShortDescrip());
-        newDonation.put("full description", donation.getFullDescrip());
-        newDonation.put("value", donation.getValue());
-        newDonation.put("category", donation.getCategory());
-        db.collection("donations")
-                .add(donation)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Donation", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Donation", "Error adding document", e);
-                    }
-                });
+
+        WelcomeActivity.itemsDB.saveItem(donation.getDonationName(), donation.getTimeStamp(), donation.getLocation(), donation.getShortDescrip(), donation.getFullDescrip(), donation.getValue(), donation.getCategory());
         donationList.add(donation);
         donationNames.add(donation.getDonationName() + " - " + donation.getShortDescrip());
+    }
+
+    public void addToDonationList(DonationItem donation) {
+        donationList.add(donation);
+
     }
     public void removeDonation(DonationItem donation) {
         donationList.remove(donation);

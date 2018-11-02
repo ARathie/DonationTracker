@@ -62,6 +62,13 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
         return true;
     }
 
+    public Cursor getAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql = "SELECT * FROM users";
+
+        return db.rawQuery(sql, null);
+    }
     public Cursor getUser(String username){
 
         SQLiteDatabase db = this.getReadableDatabase();

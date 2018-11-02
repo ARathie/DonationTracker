@@ -2,6 +2,7 @@ package com.a2340.creativefirehoses.firehosetracker;
 import java.util.Map;
 import java.util.HashMap;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -11,9 +12,9 @@ import java.util.ArrayList;
 public class UserList {
 
     private static Map<String, String> users = new HashMap<>();
-    private static Map<String, String> userTypes = new HashMap<>();
+    public static Map<String, String> userTypes = new HashMap<>();
     private static Map<String, String> employeeLocation = new HashMap<>();
-    private static String currentUser;
+    public static String currentUser;
     private static SQliteHelperUsers usersDB = WelcomeActivity.usersDB;
 
     public static boolean containsUser(String username) {
@@ -26,9 +27,16 @@ public class UserList {
 
     public static String getType(String username) { return userTypes.get(username); }
 
-    public static void loadUsers() {
 
-    }
+//    public static void populateUserList() {
+//        Cursor cursor = WelcomeActivity.usersDB.getAll();
+//        cursor.moveToFirst();
+//        while(!cursor.isAfterLast()){
+//            users.put(cursor.getString(cursor.getColumnIndex("username")), cursor.getString(cursor.getColumnIndex("password")));
+//            userTypes.put(cursor.getString(cursor.getColumnIndex("username")), cursor.getString(2));
+//            cursor.moveToNext();
+//        }
+//    }
 
 //    public static void loadUsers() {
 //

@@ -3,6 +3,7 @@ package com.a2340.creativefirehoses.firehosetracker;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -32,9 +33,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,8 +56,10 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     private EditText searchEntry;
     private RadioButton categoryButton;
     private RadioButton itemButton;
+    private RadioGroup radioGroup;
     private Spinner locationChoice;
     private ListView resultsList;
+    private Button searchButton;
 
 //    private Model model = Model.getInstance();
 //    private ArrayList<Item> inv;
@@ -71,19 +76,39 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         searchEntry = findViewById(R.id.searchEntry);
         categoryButton = findViewById(R.id.categoryRadio);
         itemButton = findViewById(R.id.itemRadio);
+        radioGroup = findViewById(R.id.radioGroup);
+        searchButton = findViewById(R.id.searchButton);
 
         locationChoice = (Spinner) findViewById(R.id.locationSpinner);
-        List<String> locations = LocationModel.getLocationNames();
+        List<String> locations = new ArrayList<>(LocationModel.getLocationNames());
         locations.add(0, "All");
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, locations);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationChoice.setAdapter(adapter);
 
         resultsList = (ListView) findViewById(R.id.resultsList);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, LocationModel.getLocationNames());
-        resultsList.setAdapter(adapter2);
-        resultsList.setOnItemClickListener(this);
+
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                // find the radiobutton by returned id
+                RadioButton selectedButton = (RadioButton) findViewById(selectedId);
+                String itemOrCategory = selectedButton.getText().toString();
+                if (!(itemOrCategory.equals("Item") || itemOrCategory.equals("Category"))){
+                    Context context = getApplicationContext();
+                    CharSequence text = "You must select Item or Category!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                } else {
+                    onSearchPressed(v);
+                }
+
+            }
+        });
 
 //
 //        cats = new ArrayList<>(Arrays.asList(Item.categories));
@@ -119,16 +144,61 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void onSearchPressed(View v) {
-//        Intent intent = new Intent(this, InventoryRecyclerActivity.class);
-//        inv = model.itemSearch(searchEntry.getText().toString(), categoryButton.getSelectedItem().toString(), loc);
-//        if (inv.size() == 0) {
-//            Snackbar failed = Snackbar.make(v, "No matches!", Snackbar.LENGTH_SHORT);
-//            failed.show();
-//        } else {
-//            intent.putParcelableArrayListExtra("Inventory", inv);
-//            intent.putExtra("Act", "SearchActivity");
-//            startActivity(intent);
-//        }
+
+        String searchString = searchEntry.getText().toString();
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+
+        // find the radiobutton by returned id
+        RadioButton selectedButton = (RadioButton) findViewById(selectedId);
+        String itemOrCategory = selectedButton.getText().toString();
+        if (!(itemOrCategory.equals("Item") || itemOrCategory.equals("Category"))){
+            Context context = getApplicationContext();
+            CharSequence text = "You must select Item or Category!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        } else {
+            String location = locationChoice.getSelectedItem().toString();
+
+            List<String> results = new ArrayList<>();
+
+            if (itemOrCategory.equals("Category")){
+
+                Cursor cursor = WelcomeActivity.itemsDB.getItemsFromCategory(searchString, location);
+
+                cursor.moveToFirst();
+                while(!cursor.isAfterLast()){
+                    results.add(cursor.getString(cursor.getColumnIndex("itemName")));
+                    cursor.moveToNext();
+                }
+
+
+            } else if(itemOrCategory.equals("Item")) {
+                Cursor cursor = WelcomeActivity.itemsDB.getItemsFromName(searchString, location);
+
+                cursor.moveToFirst();
+                while(!cursor.isAfterLast()){
+                    results.add(cursor.getString(cursor.getColumnIndex("itemName")));
+                    cursor.moveToNext();
+                }
+            }
+
+
+            if (results.size() == 0) {
+                Context context = getApplicationContext();
+                CharSequence text = "There were no matches";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_list_item_1, results);
+            resultsList.setAdapter(adapter2);
+            resultsList.setOnItemClickListener(this);
+        }
+
     }
 
     public void onSearchLocPressed(View v) {

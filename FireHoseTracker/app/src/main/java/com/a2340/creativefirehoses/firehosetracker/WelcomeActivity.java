@@ -16,12 +16,16 @@ import java.nio.charset.StandardCharsets;
 
 public class WelcomeActivity extends AppCompatActivity {
     public static SQliteHelperUsers usersDB;
+    public static SQliteHelperItems itemsDB;
 
     private static boolean parsed = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         usersDB = new SQliteHelperUsers(this);
+        itemsDB = new SQliteHelperItems(this);
+
+//        UserList.populateUserList();
 
         setContentView(R.layout.activity_welcome);
         Button buttonLogin = (Button) findViewById(R.id.LOGIN);

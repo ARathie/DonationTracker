@@ -346,6 +346,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
             if (WelcomeActivity.usersDB.checkUserExists(mUsername) || (UserList.containsUser(mUsername) && UserList.getPassword(mUsername).equals(mPassword))) {
+//                Cursor cursor = WelcomeActivity.usersDB.getUser(mUsername);
+//                UserList.userTypes.put(mUsername, cursor.getString(cursor.getColumnIndex("accountType")));
+                UserList.currentUser = mUsername;
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             } else {

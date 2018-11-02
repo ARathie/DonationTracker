@@ -116,10 +116,10 @@ public class AddDonationActivity extends AppCompatActivity {
                 else {
                     currentLocation.addDonation(new DonationItem(dName, strDate, currentLocation.getLocationName(),
                             shortDes, fullDes, val, ctgry));
-                    SharedPreferences sharedPref = getSharedPreferences("donationList", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putStringSet(dName, new HashSet<String>(Arrays.asList(strDate, currentLocation.getLocationName(), shortDes, fullDes, val, ctgry)));
-                    editor.apply();
+//                    SharedPreferences sharedPref = getSharedPreferences("donationList", Context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPref.edit();
+//                    editor.putStringSet(dName, new HashSet<String>(Arrays.asList(strDate, currentLocation.getLocationName(), shortDes, fullDes, val, ctgry)));
+//                    editor.apply();
                     Intent intent = new Intent (AddDonationActivity.this, ViewDonationsActivity.class);
                     intent.putExtra("locationPosition", locationPosition);
                     startActivity(intent);
