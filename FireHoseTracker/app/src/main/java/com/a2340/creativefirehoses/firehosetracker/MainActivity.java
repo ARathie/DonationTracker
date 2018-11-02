@@ -18,11 +18,11 @@ import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Button buttonLogOut = (Button) findViewById(R.id.buttonLogOut);
         buttonLogOut.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Button search = (Button) findViewById(R.id.search_button);
         search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent (MainActivity.this, ViewLocationsActivity.class);
+                Intent intent = new Intent (MainActivity.this, SearchActivity.class);
                 startActivity(intent);
             }
         });

@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.a2340.creativefirehoses.firehosetracker.UserList;
 
@@ -68,15 +69,16 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 UserList.addUser(username, password, type);
-                SharedPreferences sharedPref = getSharedPreferences("userList", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString(username, password);
-                editor.apply();
+//                SharedPreferences sharedPref = getSharedPreferences("userList", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPref.edit();
+//                editor.putString(username, password);
+//                editor.apply();
                 Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         }
         });
+
 
     }
 }

@@ -30,6 +30,9 @@
         <activity
             android:name=".ViewLocationsActivity"
             android:label="@string/title_activity_view_locations" />
+        <activity
+            android:name=".SearchActivity"
+            android:label="Search" />
         <activity android:name=".LocationItemDetail" />
         <activity android:name=".ViewDonationsActivity" />
         <activity android:name=".DonationDetail" />

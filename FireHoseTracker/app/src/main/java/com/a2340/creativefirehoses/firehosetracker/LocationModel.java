@@ -9,7 +9,7 @@ public class LocationModel {
     public static final LocationModel INSTANCE = new LocationModel();
 
     private List<LocationItem> locations;
-    private List<String> locationNames;
+    private static List<String> locationNames;
 
     private LocationModel() {
         locations = new ArrayList<>();
@@ -26,7 +26,7 @@ public class LocationModel {
         return locations;
     }
 
-    public List<String> getLocationNames() {
+    public static List<String> getLocationNames() {
         return locationNames;
     }
 

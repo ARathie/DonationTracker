@@ -53,7 +53,6 @@ public class LocationItem {
 //            donationNames.add(name + " - " + storedDonations.get(name).toArray());
 //            donationList.add
 
-
     }
 
 
@@ -91,8 +90,8 @@ public class LocationItem {
         donationList.remove(donation);
         donationNames.remove(donation.getDonationName() + " - " + donation.getShortDescrip());
     }
-    public List<DonationItem> getDonationList(){ return donationList; }
-    public List<String> getDonationNames(){ return donationNames; }
+    public List<DonationItem> getDonationList() { return donationList; }
+    public List<String> getDonationNames() { return donationNames; }
 
     public String getLocationName() { return locationName; }
     public String getLatitude() { return latitude; }

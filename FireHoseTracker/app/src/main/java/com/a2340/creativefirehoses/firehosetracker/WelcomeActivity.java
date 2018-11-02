@@ -15,11 +15,13 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public class WelcomeActivity extends AppCompatActivity {
+    public static SQliteHelperUsers usersDB;
 
     private static boolean parsed = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        usersDB = new SQliteHelperUsers(this);
 
         setContentView(R.layout.activity_welcome);
         Button buttonLogin = (Button) findViewById(R.id.LOGIN);

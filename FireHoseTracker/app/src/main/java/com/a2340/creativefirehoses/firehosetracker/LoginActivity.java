@@ -340,10 +340,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-            SharedPreferences sharedPref = getSharedPreferences("userList", Context.MODE_PRIVATE);
-            boolean usernameStored = sharedPref.contains(mUsername);
-            String storedPassword = sharedPref.getString(mUsername, "notStored");
-            if ((usernameStored && storedPassword.equals(mPassword)) || (UserList.containsUser(mUsername) && UserList.getPassword(mUsername).equals(mPassword))) {
+//            SharedPreferences sharedPref = getSharedPreferences("userList", Context.MODE_PRIVATE);
+//            boolean usernameStored = sharedPref.contains(mUsername);
+//            String storedPassword = sharedPref.getString(mUsername, "notStored");
+
+
+            if (WelcomeActivity.usersDB.checkUserExists(mUsername) || (UserList.containsUser(mUsername) && UserList.getPassword(mUsername).equals(mPassword))) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             } else {
