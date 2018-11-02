@@ -45,7 +45,7 @@ public class LocationItem {
         this.website = website;
         donationList = new ArrayList<>();
         donationNames = new ArrayList<>();
-        db.
+
 //        SharedPreferences sharedPref = getSharedPreferences("donationList", Context.MODE_PRIVATE);
 //        Map<String, ?> storedDonations = sharedPref.getAll();
 //        // StringSet that is the values in the Map. Index 0: strDate, 1: currentLocation.getLocationName(), 2: shortDes, 3: fullDes, 4: val, 5: ctgry)
