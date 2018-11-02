@@ -14,6 +14,7 @@ public class LocationModel {
     private LocationModel() {
         locations = new ArrayList<>();
         locationNames = new ArrayList<>();
+
     }
 
     public void addItem(LocationItem item) {

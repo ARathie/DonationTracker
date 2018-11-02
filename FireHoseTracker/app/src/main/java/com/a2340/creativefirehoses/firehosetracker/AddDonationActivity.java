@@ -3,7 +3,9 @@ package com.a2340.creativefirehoses.firehosetracker;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -35,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -113,6 +116,10 @@ public class AddDonationActivity extends AppCompatActivity {
                 else {
                     currentLocation.addDonation(new DonationItem(dName, strDate, currentLocation.getLocationName(),
                             shortDes, fullDes, val, ctgry));
+                    SharedPreferences sharedPref = getSharedPreferences("donationList", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putStringSet(dName, new HashSet<String>(Arrays.asList(strDate, currentLocation.getLocationName(), shortDes, fullDes, val, ctgry)));
+                    editor.apply();
                     Intent intent = new Intent (AddDonationActivity.this, ViewDonationsActivity.class);
                     intent.putExtra("locationPosition", locationPosition);
                     startActivity(intent);
