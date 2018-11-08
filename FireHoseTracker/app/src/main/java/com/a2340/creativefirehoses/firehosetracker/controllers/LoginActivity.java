@@ -1,11 +1,9 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.controllers;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -33,7 +31,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
-import com.a2340.creativefirehoses.firehosetracker.UserList;
+
+import com.a2340.creativefirehoses.firehosetracker.R;
+import com.a2340.creativefirehoses.firehosetracker.model.UserList;
 
 
 import static android.Manifest.permission.READ_CONTACTS;

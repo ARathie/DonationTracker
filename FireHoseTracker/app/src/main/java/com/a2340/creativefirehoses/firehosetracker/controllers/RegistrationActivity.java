@@ -1,8 +1,6 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.controllers;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.a2340.creativefirehoses.firehosetracker.UserList;
+import com.a2340.creativefirehoses.firehosetracker.R;
+import com.a2340.creativefirehoses.firehosetracker.model.UserList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,7 +63,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 editUsername.requestFocus();
             } else if (type.equals("Location Employee")){
                 UserList.addUser(username, password, type);
-                Intent intent = new Intent(RegistrationActivity.this, AddEmployeeLocation.class);
+                Intent intent = new Intent(RegistrationActivity.this, AddEmployeeLocationActivity.class);
                 startActivity(intent);
             } else {
                 UserList.addUser(username, password, type);

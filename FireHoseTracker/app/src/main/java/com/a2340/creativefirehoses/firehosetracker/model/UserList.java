@@ -1,13 +1,10 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.model;
 import java.util.Map;
 import java.util.HashMap;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.widget.EditText;
-import android.widget.Toast;
 
 
-import java.util.ArrayList;
+import com.a2340.creativefirehoses.firehosetracker.controllers.WelcomeActivity;
+import com.a2340.creativefirehoses.firehosetracker.model.SQliteHelperUsers;
 
 public class UserList {
 

@@ -1,19 +1,12 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.controllers;
 
-import android.app.ListActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.content.Intent;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+
+import com.a2340.creativefirehoses.firehosetracker.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,37 +41,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
+        Button viewMap = (Button) findViewById(R.id.view_map);
+        viewMap.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent (MainActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    /**
-//     * Button handler for the load button
-//     *
-//     * @param view  the actual button object that was pressed
-//     */
+    @Override
+    public void onBackPressed() {
+
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.controllers;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -10,6 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.a2340.creativefirehoses.firehosetracker.model.LocationItem;
+import com.a2340.creativefirehoses.firehosetracker.model.LocationModel;
+import com.a2340.creativefirehoses.firehosetracker.R;
+import com.a2340.creativefirehoses.firehosetracker.model.UserList;
 
 public class ViewDonationsActivity extends ListActivity implements AdapterView.OnItemClickListener{
 
@@ -63,7 +68,7 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
         Log.i("LocationListView", "You clicked Item: " + id + " at position:" + donationPosition);
         // Then you start a new Activity via Intent
         Intent intent = new Intent();
-        intent.setClass(this, DonationDetail.class);
+        intent.setClass(this, DonationDetailActivity.class);
         intent.putExtra("donationPosition", donationPosition);
         intent.putExtra("locationPosition", locationPosition);
         startActivity(intent);
@@ -72,7 +77,7 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.setClass(this, LocationItemDetail.class);
+        intent.setClass(this, LocationItemDetailActivity.class);
         intent.putExtra("locationPosition", locationPosition);
         startActivity(intent);
     }

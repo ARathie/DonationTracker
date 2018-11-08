@@ -1,11 +1,16 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.controllers;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class DonationDetail extends Activity {
+import com.a2340.creativefirehoses.firehosetracker.model.DonationItem;
+import com.a2340.creativefirehoses.firehosetracker.model.LocationItem;
+import com.a2340.creativefirehoses.firehosetracker.model.LocationModel;
+import com.a2340.creativefirehoses.firehosetracker.R;
+
+public class DonationDetailActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

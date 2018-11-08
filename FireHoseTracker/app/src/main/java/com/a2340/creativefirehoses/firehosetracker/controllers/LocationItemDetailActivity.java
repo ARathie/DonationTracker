@@ -1,4 +1,4 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.controllers;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class LocationItemDetail extends Activity {
+import com.a2340.creativefirehoses.firehosetracker.model.LocationItem;
+import com.a2340.creativefirehoses.firehosetracker.model.LocationModel;
+import com.a2340.creativefirehoses.firehosetracker.R;
+
+public class LocationItemDetailActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class LocationItemDetail extends Activity {
         Button viewDonations = (Button) findViewById(R.id.view_donations);
         viewDonations.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent (LocationItemDetail.this, ViewDonationsActivity.class);
+                Intent intent = new Intent (LocationItemDetailActivity.this, ViewDonationsActivity.class);
                 intent.putExtra("locationPosition", locationPosition);
                 startActivity(intent);
             }

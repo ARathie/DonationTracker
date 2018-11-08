@@ -1,12 +1,16 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
-import android.view.View;
-import android.view.View.OnClickListener;
+
+import com.a2340.creativefirehoses.firehosetracker.model.LocationItem;
+import com.a2340.creativefirehoses.firehosetracker.model.LocationModel;
+import com.a2340.creativefirehoses.firehosetracker.R;
+import com.a2340.creativefirehoses.firehosetracker.model.SQliteHelperItems;
+import com.a2340.creativefirehoses.firehosetracker.model.SQliteHelperUsers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -88,6 +92,10 @@ public class WelcomeActivity extends AppCompatActivity {
         } catch (IOException e) {
 
         }
+
+    }
+    @Override
+    public void onBackPressed() {
 
     }
 }

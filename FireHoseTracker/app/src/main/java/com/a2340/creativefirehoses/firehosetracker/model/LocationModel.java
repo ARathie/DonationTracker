@@ -1,6 +1,7 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.model;
 
 import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 

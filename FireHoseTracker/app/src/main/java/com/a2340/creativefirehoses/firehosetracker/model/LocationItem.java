@@ -1,20 +1,12 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.model;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.a2340.creativefirehoses.firehosetracker.controllers.WelcomeActivity;
+import com.a2340.creativefirehoses.firehosetracker.model.DonationItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LocationItem {
     private String locationName;

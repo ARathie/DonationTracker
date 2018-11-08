@@ -1,4 +1,4 @@
-package com.a2340.creativefirehoses.firehosetracker;
+package com.a2340.creativefirehoses.firehosetracker.model;
 
 public class DonationItem {
 
