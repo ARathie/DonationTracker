@@ -4,12 +4,17 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.a2340.creativefirehoses.firehosetracker.R;
+import com.a2340.creativefirehoses.firehosetracker.model.LocationItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.a2340.creativefirehoses.firehosetracker.model.LocationModel;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -40,8 +45,18 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LocationModel model = LocationModel.INSTANCE;
+        List<LatLng> coordinates = new ArrayList<>();
+        for (LocationItem location: model.getLocations()) {
+            double latitude = Double.parseDouble(location.getLatitude());
+            double longitude = Double.parseDouble(location.getLongitude());
+            String text = "";
+            text += location.getLocationName() + "\n";
+            text += location.getPhoneNum() + "\n";
+            LatLng coordinate = new LatLng(latitude, longitude);
+            coordinates.add(coordinate);
+            mMap.addMarker(new MarkerOptions().position(coordinate).title(location.getLocationName()).snippet(location.getPhoneNum()));
+        }
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates.get(0), 12.0f));
     }
 }

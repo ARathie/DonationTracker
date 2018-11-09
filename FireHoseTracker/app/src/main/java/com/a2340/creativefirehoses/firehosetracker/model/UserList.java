@@ -22,7 +22,9 @@ public class UserList {
         return users.get(username);
     }
 
-    public static String getType(String username) { return userTypes.get(username); }
+    public static String getType(String username) {
+        return userTypes.get(username);
+    }
 
 
 //    public static void populateUserList() {
