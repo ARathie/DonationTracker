@@ -53,11 +53,11 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
 
         addDonation.setVisibility(View.GONE);
 
-        if (UserList.getType(currentUser).equals("Location Employee")
-                || UserList.getType(currentUser).equals("Manager")) {
-            if ((UserList.getType(currentUser).equals("Location Employee")
-                    && UserList.getLocation(currentUser).equals(currentLocation.getLocationName()))
-                    || UserList.getType(currentUser).equals("Manager")) {
+        if (("Location Employee").equals(UserList.getType(currentUser))
+                || ("Manager").equals(UserList.getType(currentUser))) {
+            if (("Location Employee").equals(UserList.getType(currentUser))
+                    && (currentLocation.getLocationName()).equals(UserList.getLocation(currentUser))
+                    || ("Manager").equals(UserList.getType(currentUser))) {
                 addDonation.setVisibility(View.VISIBLE);
             }
         }
