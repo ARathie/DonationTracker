@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings("RedundantCast")
 public class WelcomeActivity extends AppCompatActivity {
     public static SQliteHelperUsers usersDB;
     public static SQliteHelperItems itemsDB;
@@ -54,16 +55,16 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     }
 
-    public static final int LOCATION_NAME = 1;
-    public static final int LATITUDE = 2;
-    public static final int LONGITUDE = 3;
-    public static final int STREET_ADDRESS = 4;
-    public static final int CITY = 5;
-    public static final int STATE = 6;
-    public static final int ZIP = 7;
-    public static final int TYPE = 8;
-    public static final int PHONE_NUM = 9;
-    public static final int WEBSITE = 10;
+    private static final int LOCATION_NAME = 1;
+    private static final int LATITUDE = 2;
+    private static final int LONGITUDE = 3;
+    private static final int STREET_ADDRESS = 4;
+    private static final int CITY = 5;
+    private static final int STATE = 6;
+    private static final int ZIP = 7;
+    private static final int TYPE = 8;
+    private static final int PHONE_NUM = 9;
+    private static final int WEBSITE = 10;
     /**
      * Open the sample.csv file in the /res/raw directory
      * Line Entry format:
@@ -89,7 +90,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         tokens[ZIP], tokens[TYPE], tokens[PHONE_NUM], tokens[WEBSITE]));
             }
             br.close();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
 

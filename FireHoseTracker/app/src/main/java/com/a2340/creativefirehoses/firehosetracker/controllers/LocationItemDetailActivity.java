@@ -11,11 +11,12 @@ import com.a2340.creativefirehoses.firehosetracker.model.LocationItem;
 import com.a2340.creativefirehoses.firehosetracker.model.LocationModel;
 import com.a2340.creativefirehoses.firehosetracker.R;
 
+@SuppressWarnings("RedundantCast")
 public class LocationItemDetailActivity extends Activity {
 
     /**
      * Sets the layout for the location item details
-     * @param savedInstanceState
+     * @param savedInstanceState instance state
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {

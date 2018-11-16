@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
+@SuppressWarnings("RedundantCast")
 public class RegistrationActivity extends AppCompatActivity {
 
     @Override

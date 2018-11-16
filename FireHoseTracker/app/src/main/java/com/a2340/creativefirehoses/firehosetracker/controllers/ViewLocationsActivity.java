@@ -29,10 +29,10 @@ public class ViewLocationsActivity extends ListActivity implements AdapterView.O
 
     /**
      * Goes to the details for the corresponding location when clicked
-     * @param l
-     * @param v
-     * @param locationPosition
-     * @param id
+     * @param l a variable
+     * @param v another variable
+     * @param locationPosition position for the location
+     * @param id id for view
      */
     public void onItemClick(AdapterView<?> l, View v, int locationPosition, long id) {
         Log.i("LocationListView", "You clicked Item: " + id + " at position:" + locationPosition);

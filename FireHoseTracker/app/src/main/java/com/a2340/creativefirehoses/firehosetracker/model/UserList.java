@@ -8,14 +8,14 @@ import com.a2340.creativefirehoses.firehosetracker.model.SQliteHelperUsers;
 
 public class UserList {
 
-    private static Map<String, String> users = new HashMap<>();
-    public static Map<String, String> userTypes = new HashMap<>();
-    private static Map<String, String> employeeLocation = new HashMap<>();
+    private static final Map<String, String> users = new HashMap<>();
+    private static final Map<String, String> userTypes = new HashMap<>();
+    private static final Map<String, String> employeeLocation = new HashMap<>();
     public static String currentUser;
-    private static SQliteHelperUsers usersDB = WelcomeActivity.usersDB;
+    private static final SQliteHelperUsers usersDB = WelcomeActivity.usersDB;
 
     /**
-     * @param username
+     * @param username username
      * @return true if the user exists, else false
      */
     public static boolean containsUser(String username) {
@@ -24,7 +24,7 @@ public class UserList {
 
     /**
      *
-     * @param username
+     * @param username username
      * @return the password of the corresponding username
      */
     public static String getPassword(String username) {
@@ -33,7 +33,7 @@ public class UserList {
 
     /**
      *
-     * @param username
+     * @param username username
      * @return the type of the user
      */
     public static String getType(String username) {
@@ -59,9 +59,9 @@ public class UserList {
 
     /**
      * adds a user with the corresponding username, password and type to the list
-     * @param username
-     * @param password
-     * @param type
+     * @param username username
+     * @param password password
+     * @param type type
      */
     public static void addUser(String username, String password, String type) {
         addToDatabase(username, password, type);
@@ -72,11 +72,11 @@ public class UserList {
 
     /**
      * adds a user with the corresponding username, password and type to the database
-     * @param username
-     * @param password
-     * @param type
+     * @param username username
+     * @param password password
+     * @param type type
      */
-    public static void addToDatabase(String username, String password, String type) {
+    private static void addToDatabase(String username, String password, String type) {
 
         usersDB.saveUser(username, password, type);
 
@@ -84,8 +84,8 @@ public class UserList {
 
     /**
      * Sets the location of the user
-     * @param username
-     * @param location
+     * @param username username
+     * @param location location
      */
     public static void addLocation(String username, String location) {
         employeeLocation.put(username, location);
@@ -93,7 +93,7 @@ public class UserList {
 
     /**
      *
-     * @param username
+     * @param username username
      * @return the location of the particular user
      */
     public static String getLocation(String username) {

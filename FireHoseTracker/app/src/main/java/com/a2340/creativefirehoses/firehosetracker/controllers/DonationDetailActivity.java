@@ -10,11 +10,12 @@ import com.a2340.creativefirehoses.firehosetracker.model.LocationItem;
 import com.a2340.creativefirehoses.firehosetracker.model.LocationModel;
 import com.a2340.creativefirehoses.firehosetracker.R;
 
+@SuppressWarnings("RedundantCast")
 public class DonationDetailActivity extends Activity {
 
     /**
      * Sets the layout for the donation details
-     * @param savedInstanceState
+     * @param savedInstanceState a parameter for this activty
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {

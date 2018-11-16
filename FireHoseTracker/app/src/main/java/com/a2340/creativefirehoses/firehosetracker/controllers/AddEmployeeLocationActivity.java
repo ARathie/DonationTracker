@@ -13,6 +13,7 @@ import com.a2340.creativefirehoses.firehosetracker.R;
 import com.a2340.creativefirehoses.firehosetracker.model.UserList;
 
 
+@SuppressWarnings("RedundantCast")
 public class AddEmployeeLocationActivity extends AppCompatActivity {
 
     @Override
@@ -23,6 +24,7 @@ public class AddEmployeeLocationActivity extends AppCompatActivity {
         final Spinner employeeLocation = (Spinner) findViewById(R.id.employee_location);
         LocationModel model = LocationModel.INSTANCE;
 
+        //noinspection AccessStaticViaInstance
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationNames());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         employeeLocation.setAdapter(adapter);

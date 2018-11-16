@@ -6,8 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+@SuppressWarnings("UnusedAssignment")
 public class SQliteHelperUsers extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "UsersDatabase";
+    private static final String DATABASE_NAME = "UsersDatabase";
     private static final int DATABASE_VERSION = 1;
 
     public SQliteHelperUsers (Context context) {
@@ -16,7 +17,7 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
 
     /**
      * creates database
-     * @param db
+     * @param db database
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -26,9 +27,9 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
 
     /**
      * drops earlier table if there is a duplicate
-     * @param db
-     * @param i
-     * @param i2
+     * @param db bd
+     * @param i first table
+     * @param i2 another table
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i2) {
@@ -38,12 +39,11 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
 
     /**
      *
-     * @param username
-     * @param password
-     * @param accountType
-     * @return true if the user is successfully saved, else false
+     * @param username username
+     * @param password password
+     * @param accountType account
      */
-    public boolean saveUser (String username, String password, String accountType)
+    public void saveUser (String username, String password, String accountType)
     {
         Cursor cursor = getUser(username);
 
@@ -61,16 +61,11 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
             result = db.update("users", contentValues, "username=?", new String[] { username });
         }
 
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     /**
      *
-     * @param username
+     * @param username name of user
      * @return true if the user of the username exists in the database, else false
      */
     public boolean checkUserExists (String username) {
@@ -79,10 +74,7 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
 //        String sql = "SELECT column1 FROM users WHERE users MATCH '" + username + "'";
 
         Cursor cursor = getUser(username);
-        if (cursor.getCount() == 0) {
-            return false;
-        }
-        return true;
+        return cursor.getCount() != 0;
     }
 
     /**
@@ -99,10 +91,10 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
 
     /**
      *
-     * @param username
+     * @param username name of user
      * @return a Cursor with the user of the particular username
      */
-    public Cursor getUser(String username){
+    private Cursor getUser(String username){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -113,7 +105,7 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
 
     /**
      * deletes a user from the database
-     * @param username
+     * @param username username
      */
     public void deleteUser(String username){
 

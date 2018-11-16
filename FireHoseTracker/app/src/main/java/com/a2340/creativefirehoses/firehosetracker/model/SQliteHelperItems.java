@@ -7,8 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
+@SuppressWarnings("UnusedAssignment")
 public class SQliteHelperItems extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "ItemsDatabase";
+    private static final String DATABASE_NAME = "ItemsDatabase";
     private static final int DATABASE_VERSION = 1;
 
     public SQliteHelperItems (Context context) {
@@ -17,7 +18,7 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
 
     /**
      * creates the database
-     * @param db
+     * @param db db
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -27,9 +28,9 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
 
     /**
      * If the database is updated, drops the older version
-     * @param db
-     * @param i
-     * @param i2
+     * @param db database
+     * @param i a table
+     * @param i2 another table
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i2) {
@@ -39,16 +40,15 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
 
     /**
      *
-     * @param itemName
-     * @param timeStamp
-     * @param location
-     * @param shortDescription
-     * @param fullDescription
-     * @param value
-     * @param category
-     * @return true if the item is successfully saved, else false
+     * @param itemName name of item
+     * @param timeStamp time of query
+     * @param location location
+     * @param shortDescription short description
+     * @param fullDescription full description
+     * @param value value
+     * @param category category
      */
-    public boolean saveItem (String itemName, String timeStamp, String location, String shortDescription, String fullDescription, String value, String category)
+    public void saveItem (String itemName, String timeStamp, String location, String shortDescription, String fullDescription, String value, String category)
     {
         Cursor cursor = getItem(itemName);
 
@@ -71,17 +71,12 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
             result = db.update("items", contentValues, "itemName=?", new String[] { itemName });
         }
 
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     /**
      *
-     * @param category
-     * @param location
+     * @param category category
+     * @param location location
      * @return a Cursor with all donationItems of a search category
      */
     public Cursor getItemsFromCategory(String category, String location){
@@ -100,8 +95,8 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
 
     /**
      *
-     * @param name
-     * @param location
+     * @param name name
+     * @param location location
      * @return a cursor of all DonationItems with a search name
      */
     public Cursor getItemsFromName(String name, String location){
@@ -120,7 +115,7 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
 
     /**
      *
-     * @param location
+     * @param location location
      * @return a Cursor with all DonationItems from a particular location
      */
     public Cursor getItemsFromLocation(String location){
@@ -134,10 +129,10 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
 
     /**
      *
-     * @param itemName
+     * @param itemName name of item
      * @return a Cursor with the DonationItem of the particular itemName
      */
-    public Cursor getItem(String itemName){
+    private Cursor getItem(String itemName){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -148,7 +143,7 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
 
     /**
      * Remove a user from the database
-     * @param itemName
+     * @param itemName name of item
      */
     public void deleteUser(String itemName){
 

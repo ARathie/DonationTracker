@@ -9,6 +9,7 @@ import android.content.Intent;
 import com.a2340.creativefirehoses.firehosetracker.R;
 
 
+@SuppressWarnings("RedundantCast")
 public class MainActivity extends AppCompatActivity {
 
     @Override

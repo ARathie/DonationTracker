@@ -2,6 +2,7 @@ package com.a2340.creativefirehoses.firehosetracker.controllers;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -41,6 +42,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
+@SuppressWarnings("RedundantCast")
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     /**
@@ -114,6 +116,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         getLoaderManager().initLoader(0, null, this);
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     private boolean mayRequestContacts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
@@ -138,9 +141,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * Callback received when a permissions request has been completed.
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
+     * @param requestCode code
+     * @param permissions permission
+     * @param grantResults result
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -214,7 +217,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * Shows the progress UI and hides the login form.
-     * @param show
+     * @param show show
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
@@ -251,8 +254,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * Retrieve data rows for the device user's 'profile' contact and select only email addresses
-     * @param i
-     * @param bundle
+     * @param i a variable
+     * @param bundle bundle for this
      * @return data rows for the device user's 'profile' contact
      */
     @Override
@@ -274,8 +277,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * Adds emails to autocomplete once the load finishes
-     * @param cursorLoader
-     * @param cursor
+     * @param cursorLoader loader of cursor
+     * @param cursor cursor for email
      */
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
@@ -291,7 +294,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * does nothing when the loader resets
-     * @param cursorLoader
+     * @param cursorLoader loader for cursor
      */
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
@@ -323,7 +326,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mUsername;
         private final String mPassword;

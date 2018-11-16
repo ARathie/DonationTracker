@@ -12,22 +12,22 @@ public class DonationItem {
 
     public DonationItem(String donationName, String timeStamp, String location, String shortDescription,
                         String fullDescription, String value, String category) {
-        if (donationName == "") {
+        if (donationName.equals("")) {
             throw new IllegalArgumentException("donationName is empty.");
         }
-        if (timeStamp == "") {
+        if (timeStamp.equals("")) {
             throw new IllegalArgumentException("timeStamp is empty.");
         }
-        if (location == "") {
+        if (location.equals("")) {
             throw new IllegalArgumentException("location is empty.");
         }
-        if (shortDescription == "" || fullDescription == "") {
+        if (shortDescription.equals("") || fullDescription.equals("")) {
             throw new IllegalArgumentException("One of descriptions is empty.");
         }
-        if (value == "") {
+        if (value.equals("")) {
             throw new IllegalArgumentException("donationName is empty.");
         }
-        if (category == "") {
+        if (category.equals("")) {
             throw new IllegalArgumentException("category is empty.");
         }
         this.donationName = donationName;

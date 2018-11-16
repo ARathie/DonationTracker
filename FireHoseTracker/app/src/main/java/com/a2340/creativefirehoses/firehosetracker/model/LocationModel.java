@@ -9,7 +9,7 @@ import java.util.List;
 public class LocationModel {
     public static final LocationModel INSTANCE = new LocationModel();
 
-    private List<LocationItem> locations;
+    private final List<LocationItem> locations;
     private static List<String> locationNames;
 
     private LocationModel() {
@@ -20,7 +20,7 @@ public class LocationModel {
 
     /**
      * Add a location to the list of locations
-     * @param item
+     * @param item item
      */
     public void addItem(LocationItem item) {
         if (item == null) {
@@ -47,7 +47,7 @@ public class LocationModel {
 
     /**
      *
-     * @param name
+     * @param name name
      * @return the LocationItem with the particular name if it exists, otherwise null
      */
     public LocationItem findItemByName(String name) {

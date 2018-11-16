@@ -19,10 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A login screen that offers login via email/password.
  */
+@SuppressWarnings("RedundantCast")
 public class AddDonationActivity extends AppCompatActivity {
 
     private int locationPosition;
@@ -73,7 +75,7 @@ public class AddDonationActivity extends AppCompatActivity {
                 String categoryString = category.getSelectedItem().toString();
 
                 Calendar c = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm", Locale.US);
                 String strDate = sdf.format(c.getTime());
 
                 if (dName.length() == 0) {

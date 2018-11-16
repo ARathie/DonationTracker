@@ -16,6 +16,7 @@ import com.a2340.creativefirehoses.firehosetracker.model.LocationModel;
 import com.a2340.creativefirehoses.firehosetracker.R;
 import com.a2340.creativefirehoses.firehosetracker.model.UserList;
 
+@SuppressWarnings("RedundantCast")
 public class ViewDonationsActivity extends ListActivity implements AdapterView.OnItemClickListener{
 
     private int locationPosition;
@@ -67,10 +68,10 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
     /**
      * Processes the clicking of a donationItem so that the activity can be changed
      * and the proper text can be displayed.
-     * @param l
-     * @param v
-     * @param donationPosition
-     * @param id
+     * @param l adapter
+     * @param v view
+     * @param donationPosition position of the donation
+     * @param id id for donation
      */
     public void onItemClick(AdapterView<?> l, View v, int donationPosition, long id) {
         Log.i("LocationListView", "You clicked Item: " + id + " at position:" + donationPosition);

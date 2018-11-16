@@ -28,12 +28,11 @@ import java.util.List;
 /**
  * A login screen that offers login via email/password.
  */
+@SuppressWarnings("RedundantCast")
 public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 
     private EditText searchEntry;
-    private RadioButton categoryButton;
-    private RadioButton itemButton;
     private RadioGroup radioGroup;
     private Spinner locationChoice;
     private ListView resultsList;
@@ -52,8 +51,8 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_search);
 
         searchEntry = findViewById(R.id.searchEntry);
-        categoryButton = findViewById(R.id.categoryRadio);
-        itemButton = findViewById(R.id.itemRadio);
+        RadioButton categoryButton = findViewById(R.id.categoryRadio);
+        RadioButton itemButton = findViewById(R.id.itemRadio);
         radioGroup = findViewById(R.id.radioGroup);
         searchButton = findViewById(R.id.searchButton);
 
@@ -109,10 +108,10 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     /**
      * Extracts data from the corresponding location that the search processes
-     * @param l
-     * @param v
-     * @param locationPosition
-     * @param id
+     * @param l the adapter
+     * @param v view for this onclick
+     * @param locationPosition position of the location
+     * @param id id for searching
      */
     public void onItemClick(AdapterView<?> l, View v, int locationPosition, long id) {
         Log.i("LocationListView", "You clicked Item: " + id + " at position:" + locationPosition);
@@ -125,7 +124,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     /**
      * Goes to MainActivity when the back button is pressed
-     * @param v
+     * @param v the view when back is pressed
      */
     public void onBackPressed(View v) {
         Intent intent = new Intent(this, MainActivity.class);
@@ -134,9 +133,9 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     /**
      * Logic for processing the text in the search
-     * @param v
+     * @param v the view when search is pressed
      */
-    public void onSearchPressed(View v) {
+    private void onSearchPressed(View v) {
 
         String searchString = searchEntry.getText().toString();
         int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -191,14 +190,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             resultsList.setAdapter(adapter2);
             resultsList.setOnItemClickListener(this);
         }
-
-    }
-
-    /**
-     * does nothing when searchLocPressed
-     * @param v
-     */
-    public void onSearchLocPressed(View v) {
 
     }
 

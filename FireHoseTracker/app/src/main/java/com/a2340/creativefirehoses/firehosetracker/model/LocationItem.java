@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationItem {
-    private String locationName;
-    private String latitude;
-    private String longitude;
-    private String streetAddress;
-    private String city;
-    private String state;
-    private String zip;
-    private String type;
-    private String phoneNum;
-    private String website;
-    private List<DonationItem> donationList;
-    private List<String> donationNames;
+    private final String locationName;
+    private final String latitude;
+    private final String longitude;
+    private final String streetAddress;
+    private final String city;
+    private final String state;
+    private final String zip;
+    private final String type;
+    private final String phoneNum;
+    private final String website;
+    private final List<DonationItem> donationList;
+    private final List<String> donationNames;
 
 
     public LocationItem(String locationName, String latitude, String longitude,
@@ -56,7 +56,7 @@ public class LocationItem {
 
     /**
      * Add donation to the database
-     * @param donation
+     * @param donation donation
      */
     public void addDonation(DonationItem donation) {
 
@@ -67,7 +67,7 @@ public class LocationItem {
 
     /**
      * Add donation to the temporary donationList (not the database)
-     * @param donation
+     * @param donation donation
      */
     public void addToDonationList(DonationItem donation) {
         donationList.add(donation);
@@ -76,7 +76,7 @@ public class LocationItem {
 
     /**
      * Remove donation from the database and list
-     * @param donation
+     * @param donation donation
      */
     public void removeDonation(DonationItem donation) {
         donationList.remove(donation);

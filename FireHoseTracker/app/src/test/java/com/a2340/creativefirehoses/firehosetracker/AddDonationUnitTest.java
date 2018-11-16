@@ -5,7 +5,6 @@ CS 2340: M10
 
 package com.a2340.creativefirehoses.firehosetracker;
 
-import android.location.Location;
 import org.junit.Test;
 
 import com.a2340.creativefirehoses.firehosetracker.model.DonationItem;
