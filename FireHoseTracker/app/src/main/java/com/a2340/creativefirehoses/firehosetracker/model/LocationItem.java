@@ -38,14 +38,15 @@ public class LocationItem {
         this.website = website;
         donationList = new ArrayList<>();
         donationNames = new ArrayList<>();
-        Cursor cursor = WelcomeActivity.itemsDB.getItemsFromLocation(this.locationName);
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast()){
-            donationNames.add(cursor.getString(cursor.getColumnIndex("itemName")) + " - " + cursor.getString(cursor.getColumnIndex("shortDescription")));
-            addToDonationList(new DonationItem(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)));
-            cursor.moveToNext();
+        if (WelcomeActivity.itemsDB != null) {
+            Cursor cursor = WelcomeActivity.itemsDB.getItemsFromLocation(this.locationName);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                donationNames.add(cursor.getString(cursor.getColumnIndex("itemName")) + " - " + cursor.getString(cursor.getColumnIndex("shortDescription")));
+                addToDonationList(new DonationItem(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)));
+                cursor.moveToNext();
+            }
         }
-
     }
 
 

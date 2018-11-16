@@ -19,6 +19,9 @@ public class LocationModel {
     }
 
     public void addItem(LocationItem item) {
+        if (item == null) {
+            return;
+        }
         locations.add(item);
         locationNames.add(item.getLocationName());
     }
