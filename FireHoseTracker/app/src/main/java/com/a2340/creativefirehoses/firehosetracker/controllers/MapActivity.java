@@ -50,9 +50,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         for (LocationItem location: model.getLocations()) {
             double latitude = Double.parseDouble(location.getLatitude());
             double longitude = Double.parseDouble(location.getLongitude());
-            String text = "";
-            text += location.getLocationName() + "\n";
-            text += location.getPhoneNum() + "\n";
             LatLng coordinate = new LatLng(latitude, longitude);
             coordinates.add(coordinate);
             mMap.addMarker(new MarkerOptions().position(coordinate).title(location.getLocationName()).snippet(location.getPhoneNum()));

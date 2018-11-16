@@ -47,8 +47,8 @@ public class AddDonationActivity extends AppCompatActivity {
         });
 
         final EditText donationName = (EditText) findViewById(R.id.donation_name);
-        final EditText shortDescrip = (EditText) findViewById(R.id.short_descrip);
-        final EditText fullDescrip = (EditText) findViewById(R.id.full_descrip);
+        final EditText shortDescription = (EditText) findViewById(R.id.short_descrip);
+        final EditText fullDescription = (EditText) findViewById(R.id.full_descrip);
         final EditText value = (EditText) findViewById(R.id.value);
         final Spinner category = (Spinner) findViewById(R.id.category);
 
@@ -62,10 +62,10 @@ public class AddDonationActivity extends AppCompatActivity {
         addDonation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String dName = donationName.getText().toString();
-                String shortDes = shortDescrip.getText().toString();
-                String fullDes = fullDescrip.getText().toString();
+                String shortDes = shortDescription.getText().toString();
+                String fullDes = fullDescription.getText().toString();
                 String val = "$" + value.getText().toString();
-                String ctgry = category.getSelectedItem().toString();
+                String categoryString = category.getSelectedItem().toString();
 
                 Calendar c = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm");
@@ -77,14 +77,14 @@ public class AddDonationActivity extends AppCompatActivity {
                     donationName.requestFocus();
                 }
                 else if (shortDes.length() == 0) {
-                    CharSequence error_short_descrip_blank = "Please enter a short description.";
-                    shortDescrip.setError(error_short_descrip_blank);
-                    shortDescrip.requestFocus();
+                    CharSequence error_short_description_blank = "Please enter a short description.";
+                    shortDescription.setError(error_short_description_blank);
+                    shortDescription.requestFocus();
                 }
                 else if (fullDes.length() == 0) {
                     CharSequence error_full_descrip_blank = "Please enter a full description.";
-                    fullDescrip.setError(error_full_descrip_blank);
-                    fullDescrip.requestFocus();
+                    fullDescription.setError(error_full_descrip_blank);
+                    fullDescription.requestFocus();
                 }
                 else if (val.length() == 0) {
                     CharSequence error_val_blank = "Please enter a value.";
@@ -93,10 +93,10 @@ public class AddDonationActivity extends AppCompatActivity {
                 }
                 else {
                     currentLocation.addDonation(new DonationItem(dName, strDate, currentLocation.getLocationName(),
-                            shortDes, fullDes, val, ctgry));
+                            shortDes, fullDes, val, categoryString));
 //                    SharedPreferences sharedPref = getSharedPreferences("donationList", Context.MODE_PRIVATE);
 //                    SharedPreferences.Editor editor = sharedPref.edit();
-//                    editor.putStringSet(dName, new HashSet<String>(Arrays.asList(strDate, currentLocation.getLocationName(), shortDes, fullDes, val, ctgry)));
+//                    editor.putStringSet(dName, new HashSet<String>(Arrays.asList(strDate, currentLocation.getLocationName(), shortDes, fullDes, val, categoryString)));
 //                    editor.apply();
                     Intent intent = new Intent (AddDonationActivity.this, ViewDonationsActivity.class);
                     intent.putExtra("locationPosition", locationPosition);

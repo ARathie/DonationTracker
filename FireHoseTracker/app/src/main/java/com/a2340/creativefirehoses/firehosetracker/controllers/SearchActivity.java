@@ -171,7 +171,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
             }
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this,
                     android.R.layout.simple_list_item_1, results);
             resultsList.setAdapter(adapter2);
             resultsList.setOnItemClickListener(this);
@@ -180,16 +180,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void onSearchLocPressed(View v) {
-//        Intent intent = new Intent(this, LocationRecyclerActivity.class);
-//        ArrayList<Location> locs = model.locSearch(locField.getText().toString());
-//        if (locs.size() == 0) {
-//            Snackbar failed = Snackbar.make(v, "No matches!", Snackbar.LENGTH_SHORT);
-//            failed.show();
-//        } else {
-//            intent.putParcelableArrayListExtra("Locations",  locs);
-//            intent.putExtra("Act", "SearchActivity");
-//            startActivity(intent);
-//        }
+
     }
 
 }

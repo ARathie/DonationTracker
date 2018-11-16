@@ -37,7 +37,7 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
         }
 
         ListView list = getListView();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, currentLocation.getDonationNames());
         list.setAdapter(adapter);
         list.setOnItemClickListener(this);

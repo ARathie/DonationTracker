@@ -21,7 +21,7 @@ public class ViewLocationsActivity extends ListActivity implements AdapterView.O
 
         LocationModel model = LocationModel.INSTANCE;
         ListView list = getListView();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, LocationModel.getLocationNames());
         list.setAdapter(adapter);
         list.setOnItemClickListener(this);

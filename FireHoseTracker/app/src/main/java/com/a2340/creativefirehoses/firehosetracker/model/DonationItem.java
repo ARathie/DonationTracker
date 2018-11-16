@@ -5,18 +5,18 @@ public class DonationItem {
     private String donationName;
     private String timeStamp;
     private String location;
-    private String shortDescrip;
-    private String fullDescrip;
+    private String shortDescription;
+    private String fullDescription;
     private String value;
     private String category;
 
-    public DonationItem(String donationName, String timeStamp, String location, String shortDescrip,
-                        String fullDescrip, String value, String category) {
+    public DonationItem(String donationName, String timeStamp, String location, String shortDescription,
+                        String fullDescription, String value, String category) {
         this.donationName = donationName;
         this.timeStamp = timeStamp;
         this.location = location;
-        this.shortDescrip = shortDescrip;
-        this.fullDescrip = fullDescrip;
+        this.shortDescription = shortDescription;
+        this.fullDescription = fullDescription;
         this.value = value;
         this.category = category;
     }
@@ -25,8 +25,8 @@ public class DonationItem {
     public String getDonationName() { return donationName; }
     public String getTimeStamp() { return timeStamp; }
     public String getLocation() { return location; }
-    public String getShortDescrip() { return shortDescrip; }
-    public String getFullDescrip() { return fullDescrip;}
+    public String getShortDescrip() { return shortDescription; }
+    public String getFullDescrip() { return fullDescription;}
     public String getValue() { return value;}
     public String getCategory() { return category;}
 }
