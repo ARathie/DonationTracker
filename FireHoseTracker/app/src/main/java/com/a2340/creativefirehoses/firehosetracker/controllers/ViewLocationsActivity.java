@@ -27,6 +27,13 @@ public class ViewLocationsActivity extends ListActivity implements AdapterView.O
         list.setOnItemClickListener(this);
     }
 
+    /**
+     * Goes to the details for the corresponding location when clicked
+     * @param l
+     * @param v
+     * @param locationPosition
+     * @param id
+     */
     public void onItemClick(AdapterView<?> l, View v, int locationPosition, long id) {
         Log.i("LocationListView", "You clicked Item: " + id + " at position:" + locationPosition);
         // Then you start a new Activity via Intent
@@ -36,6 +43,9 @@ public class ViewLocationsActivity extends ListActivity implements AdapterView.O
         startActivity(intent);
     }
 
+    /**
+     * Goes to MainActivity when the back button is pressed
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();

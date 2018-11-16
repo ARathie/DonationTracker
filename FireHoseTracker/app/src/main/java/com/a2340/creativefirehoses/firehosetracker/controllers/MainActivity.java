@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Uses the default implementation for pressing the back button
+     */
     @Override
     public void onBackPressed() {
 

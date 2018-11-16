@@ -27,10 +27,6 @@ public class AddDonationActivity extends AppCompatActivity {
 
     private int locationPosition;
 
-    /**
-     *
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +61,10 @@ public class AddDonationActivity extends AppCompatActivity {
 
         Button addDonation = (Button) findViewById(R.id.add_donation);
         addDonation.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Shows the description of the donation after a click occurs
+             * @param v The view that contains the name of the donation
+             */
             public void onClick(View v) {
                 String dName = donationName.getText().toString();
                 String shortDes = shortDescription.getText().toString();

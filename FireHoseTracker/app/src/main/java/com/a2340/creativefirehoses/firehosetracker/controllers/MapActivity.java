@@ -30,7 +30,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         mapFragment.getMapAsync(this);
     }
 
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -39,6 +38,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
+     * @param googleMap
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -50,6 +50,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         for (LocationItem location: model.getLocations()) {
             double latitude = Double.parseDouble(location.getLatitude());
             double longitude = Double.parseDouble(location.getLongitude());
+            String text = "";
+            text += location.getLocationName() + "\n";
+            text += location.getPhoneNum() + "\n";
             LatLng coordinate = new LatLng(latitude, longitude);
             coordinates.add(coordinate);
             mMap.addMarker(new MarkerOptions().position(coordinate).title(location.getLocationName()).snippet(location.getPhoneNum()));

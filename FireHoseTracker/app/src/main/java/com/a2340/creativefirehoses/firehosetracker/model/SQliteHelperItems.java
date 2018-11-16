@@ -15,18 +15,39 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * creates the database
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE items (itemName TEXT PRIMARY KEY, timeStamp Text, location Text, shortDescription Text, fullDescription Text, value Text, category Text)";
         db.execSQL(sql);
     }
 
+    /**
+     * If the database is updated, drops the older version
+     * @param db
+     * @param i
+     * @param i2
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i2) {
         db.execSQL("DROP TABLE IF EXISTS items");
         onCreate(db);
     }
 
+    /**
+     *
+     * @param itemName
+     * @param timeStamp
+     * @param location
+     * @param shortDescription
+     * @param fullDescription
+     * @param value
+     * @param category
+     * @return true if the item is successfully saved, else false
+     */
     public boolean saveItem (String itemName, String timeStamp, String location, String shortDescription, String fullDescription, String value, String category)
     {
         Cursor cursor = getItem(itemName);
@@ -57,6 +78,12 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     *
+     * @param category
+     * @param location
+     * @return a Cursor with all donationItems of a search category
+     */
     public Cursor getItemsFromCategory(String category, String location){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -71,6 +98,12 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
         return db.rawQuery(sql, new String[] { category, location});
     }
 
+    /**
+     *
+     * @param name
+     * @param location
+     * @return a cursor of all DonationItems with a search name
+     */
     public Cursor getItemsFromName(String name, String location){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -85,6 +118,11 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
         return db.rawQuery(sql, new String[] { name, location});
     }
 
+    /**
+     *
+     * @param location
+     * @return a Cursor with all DonationItems from a particular location
+     */
     public Cursor getItemsFromLocation(String location){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -94,6 +132,11 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
         return db.rawQuery(sql, new String[] {location});
     }
 
+    /**
+     *
+     * @param itemName
+     * @return a Cursor with the DonationItem of the particular itemName
+     */
     public Cursor getItem(String itemName){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -103,6 +146,10 @@ public class SQliteHelperItems extends SQLiteOpenHelper {
         return db.rawQuery(sql, new String[] { itemName });
     }
 
+    /**
+     * Remove a user from the database
+     * @param itemName
+     */
     public void deleteUser(String itemName){
 
         SQLiteDatabase db = this.getWritableDatabase();

@@ -64,6 +64,14 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
 
     }
 
+    /**
+     * Processes the clicking of a donationItem so that the activity can be changed
+     * and the proper text can be displayed.
+     * @param l
+     * @param v
+     * @param donationPosition
+     * @param id
+     */
     public void onItemClick(AdapterView<?> l, View v, int donationPosition, long id) {
         Log.i("LocationListView", "You clicked Item: " + id + " at position:" + donationPosition);
         // Then you start a new Activity via Intent
@@ -74,6 +82,10 @@ public class ViewDonationsActivity extends ListActivity implements AdapterView.O
         startActivity(intent);
     }
 
+
+    /**
+     * Goes to LocationItemDetailActivity when the back button is pressed.
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();

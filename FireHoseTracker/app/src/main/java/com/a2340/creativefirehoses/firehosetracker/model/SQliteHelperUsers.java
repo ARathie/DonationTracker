@@ -14,18 +14,35 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * creates database
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE users (username TEXT PRIMARY KEY, password Text, accountType Text)";
         db.execSQL(sql);
     }
 
+    /**
+     * drops earlier table if there is a duplicate
+     * @param db
+     * @param i
+     * @param i2
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i2) {
         db.execSQL("DROP TABLE IF EXISTS users");
         onCreate(db);
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @param accountType
+     * @return true if the user is successfully saved, else false
+     */
     public boolean saveUser (String username, String password, String accountType)
     {
         Cursor cursor = getUser(username);
@@ -50,6 +67,12 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    /**
+     *
+     * @param username
+     * @return true if the user of the username exists in the database, else false
+     */
     public boolean checkUserExists (String username) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -62,6 +85,10 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     *
+     * @return all the users
+     */
     public Cursor getAll() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -69,6 +96,12 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
 
         return db.rawQuery(sql, null);
     }
+
+    /**
+     *
+     * @param username
+     * @return a Cursor with the user of the particular username
+     */
     public Cursor getUser(String username){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -78,6 +111,10 @@ public class SQliteHelperUsers extends SQLiteOpenHelper {
         return db.rawQuery(sql, new String[] { username });
     }
 
+    /**
+     * deletes a user from the database
+     * @param username
+     */
     public void deleteUser(String username){
 
         SQLiteDatabase db = this.getWritableDatabase();

@@ -14,14 +14,28 @@ public class UserList {
     public static String currentUser;
     private static SQliteHelperUsers usersDB = WelcomeActivity.usersDB;
 
+    /**
+     * @param username
+     * @return true if the user exists, else false
+     */
     public static boolean containsUser(String username) {
         return users.containsKey(username);
     }
 
+    /**
+     *
+     * @param username
+     * @return the password of the corresponding username
+     */
     public static String getPassword(String username) {
         return users.get(username);
     }
 
+    /**
+     *
+     * @param username
+     * @return the type of the user
+     */
     public static String getType(String username) {
         return userTypes.get(username);
     }
@@ -43,6 +57,12 @@ public class UserList {
 //        userTypes.put(username, type);
 //    }
 
+    /**
+     * adds a user with the corresponding username, password and type to the list
+     * @param username
+     * @param password
+     * @param type
+     */
     public static void addUser(String username, String password, String type) {
         addToDatabase(username, password, type);
         currentUser = username;
@@ -50,20 +70,39 @@ public class UserList {
         userTypes.put(username, type);
     }
 
-
+    /**
+     * adds a user with the corresponding username, password and type to the database
+     * @param username
+     * @param password
+     * @param type
+     */
     public static void addToDatabase(String username, String password, String type) {
 
         usersDB.saveUser(username, password, type);
 
     }
 
+    /**
+     * Sets the location of the user
+     * @param username
+     * @param location
+     */
     public static void addLocation(String username, String location) {
         employeeLocation.put(username, location);
     }
 
+    /**
+     *
+     * @param username
+     * @return the location of the particular user
+     */
     public static String getLocation(String username) {
         return employeeLocation.get(username);
     }
 
+    /**
+     *
+     * @return the name of the user that is logged in
+     */
     public static String getCurrentUser(){ return currentUser; }
 }

@@ -13,6 +13,10 @@ import com.a2340.creativefirehoses.firehosetracker.R;
 
 public class LocationItemDetailActivity extends Activity {
 
+    /**
+     * Sets the layout for the location item details
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

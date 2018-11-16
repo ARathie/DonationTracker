@@ -94,6 +94,10 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
     }
+
+    /**
+     * does nothing when the back button is pressed
+     */
     @Override
     public void onBackPressed() {
 

@@ -22,11 +22,45 @@ public class DonationItem {
     }
 
 
+    /**
+     *
+     * @return the name of the donation
+     */
     public String getDonationName() { return donationName; }
+
+    /**
+     *
+     * @return the timeStamp of the donation
+     */
     public String getTimeStamp() { return timeStamp; }
+
+    /**
+     *
+     * @return the donation's location
+     */
     public String getLocation() { return location; }
+
+    /**
+     *
+     * @return the short description of the donation
+     */
     public String getShortDescrip() { return shortDescription; }
+
+    /**
+     *
+     * @return the full description of the donation
+     */
     public String getFullDescrip() { return fullDescription;}
+
+    /**
+     *
+     * @return the price of the donation
+     */
     public String getValue() { return value;}
+
+    /**
+     *
+     * @return the category of the donation
+     */
     public String getCategory() { return category;}
 }

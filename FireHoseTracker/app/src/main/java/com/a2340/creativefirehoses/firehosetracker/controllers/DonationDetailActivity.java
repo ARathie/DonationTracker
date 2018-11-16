@@ -12,6 +12,10 @@ import com.a2340.creativefirehoses.firehosetracker.R;
 
 public class DonationDetailActivity extends Activity {
 
+    /**
+     * Sets the layout for the donation details
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -53,6 +53,11 @@ public class LocationItem {
     public String toString() {
         return locationName;
     }
+
+    /**
+     * Add donation to the database
+     * @param donation
+     */
     public void addDonation(DonationItem donation) {
 
         WelcomeActivity.itemsDB.saveItem(donation.getDonationName(), donation.getTimeStamp(), donation.getLocation(), donation.getShortDescrip(), donation.getFullDescrip(), donation.getValue(), donation.getCategory());
@@ -60,25 +65,93 @@ public class LocationItem {
         donationNames.add(donation.getDonationName() + " - " + donation.getShortDescrip());
     }
 
+    /**
+     * Add donation to the temporary donationList (not the database)
+     * @param donation
+     */
     public void addToDonationList(DonationItem donation) {
         donationList.add(donation);
 
     }
+
+    /**
+     * Remove donation from the database and list
+     * @param donation
+     */
     public void removeDonation(DonationItem donation) {
         donationList.remove(donation);
         donationNames.remove(donation.getDonationName() + " - " + donation.getShortDescrip());
     }
+
+    /**
+     *
+     * @return the list of all donations
+     */
     public List<DonationItem> getDonationList() { return donationList; }
+
+    /**
+     *
+     * @return the names of all donations
+     */
     public List<String> getDonationNames() { return donationNames; }
 
+    /**
+     *
+     * @return the name of the location
+     */
     public String getLocationName() { return locationName; }
+
+    /**
+     *
+     * @return the latitude of the location
+     */
     public String getLatitude() { return latitude; }
+
+    /**
+     *
+     * @return the longitude of the location
+     */
     public String getLongitude() { return longitude; }
+
+    /**
+     *
+     * @return the street address of the location
+     */
     public String getStreetAddress() { return streetAddress;}
+
+    /**
+     *
+     * @return the city of the location
+     */
     public String getCity() { return city;}
+
+    /**
+     *
+     * @return the state of the location
+     */
     public String getState() { return state;}
+
+    /**
+     *
+     * @return the zip of the location
+     */
     public String getZip() { return zip;}
+
+    /**
+     *
+     * @return the type of store
+     */
     public String getType() { return type;}
+
+    /**
+     *
+     * @return the phone number of the store
+     */
     public String getPhoneNum() { return phoneNum;}
+
+    /**
+     *
+     * @return the website of the store
+     */
     public String getWebsite() { return website;}
 }

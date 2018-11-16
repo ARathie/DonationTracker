@@ -107,6 +107,13 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    /**
+     * Extracts data from the corresponding location that the search processes
+     * @param l
+     * @param v
+     * @param locationPosition
+     * @param id
+     */
     public void onItemClick(AdapterView<?> l, View v, int locationPosition, long id) {
         Log.i("LocationListView", "You clicked Item: " + id + " at position:" + locationPosition);
         // Then you start a new Activity via Intent
@@ -116,11 +123,19 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         startActivity(intent);
     }
 
+    /**
+     * Goes to MainActivity when the back button is pressed
+     * @param v
+     */
     public void onBackPressed(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Logic for processing the text in the search
+     * @param v
+     */
     public void onSearchPressed(View v) {
 
         String searchString = searchEntry.getText().toString();
@@ -179,6 +194,10 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    /**
+     * does nothing when searchLocPressed
+     * @param v
+     */
     public void onSearchLocPressed(View v) {
 
     }

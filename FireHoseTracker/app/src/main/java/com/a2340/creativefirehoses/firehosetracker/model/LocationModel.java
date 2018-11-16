@@ -18,6 +18,10 @@ public class LocationModel {
 
     }
 
+    /**
+     * Add a location to the list of locations
+     * @param item
+     */
     public void addItem(LocationItem item) {
         if (item == null) {
             return;
@@ -26,14 +30,26 @@ public class LocationModel {
         locationNames.add(item.getLocationName());
     }
 
+    /**
+     *
+     * @return all LocationItems, each of which contains the details of a location
+     */
     public List<LocationItem> getLocations() {
         return locations;
     }
 
+    /**
+     * @return the names of all locations
+     */
     public static List<String> getLocationNames() {
         return locationNames;
     }
 
+    /**
+     *
+     * @param name
+     * @return the LocationItem with the particular name if it exists, otherwise null
+     */
     public LocationItem findItemByName(String name) {
         for (LocationItem d : locations) {
             if (d.getLocationName().equals(name)) return d;
