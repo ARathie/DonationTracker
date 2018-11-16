@@ -26,22 +26,28 @@ public class DonationDetailActivity extends Activity {
         DonationItem currentDonation = currentLocation.getDonationList().get(donationPosition);
 
         TextView donationName = (TextView) findViewById(R.id.donation_name);
-        donationName.setText("Donation Name: " + currentDonation.getDonationName());
+        String name = "Donation Name: " + currentDonation.getDonationName();
+        donationName.setText(name);
 
         TextView timeStamp = (TextView) findViewById(R.id.time_stamp);
-        timeStamp.setText("Time Stamp: " + currentDonation.getTimeStamp());
+        String stamp = "Time Stamp: " + currentDonation.getTimeStamp();
+        timeStamp.setText(stamp);
 
         TextView location = (TextView) findViewById(R.id.location);
-        location.setText("Location: " + currentDonation.getLocation());
+        String location_text = "Location: " + currentDonation.getLocation();
+        location.setText(location_text);
 
         TextView fullDescription = (TextView) findViewById(R.id.full_descrip);
-        fullDescription.setText("Full Description: " + currentDonation.getFullDescrip());
+        String description = "Full Description: " + currentDonation.getFullDescrip();
+        fullDescription.setText(description);
 
         TextView value = (TextView) findViewById(R.id.value);
-        value.setText("Value: " + currentDonation.getValue());
+        String value_text = "Value: " + currentDonation.getValue();
+        value.setText(value_text);
 
         TextView category = (TextView) findViewById(R.id.category);
-        category.setText("Category: " + currentDonation.getCategory());
+        String category_text = "Category: " + currentDonation.getCategory();
+        category.setText(category_text);
 
     }
 }

@@ -26,6 +26,11 @@ import java.util.List;
 public class AddDonationActivity extends AppCompatActivity {
 
     private int locationPosition;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +87,8 @@ public class AddDonationActivity extends AppCompatActivity {
                     shortDescription.requestFocus();
                 }
                 else if (fullDes.length() == 0) {
-                    CharSequence error_full_descrip_blank = "Please enter a full description.";
-                    fullDescription.setError(error_full_descrip_blank);
+                    CharSequence error_full_description_blank = "Please enter a full description.";
+                    fullDescription.setError(error_full_description_blank);
                     fullDescription.requestFocus();
                 }
                 else if (val.length() == 0) {
