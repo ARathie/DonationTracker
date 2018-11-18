@@ -1,5 +1,8 @@
 package com.a2340.creativefirehoses.firehosetracker;
 
+import android.content.Context;
+import android.widget.EditText;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

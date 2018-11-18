@@ -47,37 +47,46 @@ public class RegistrationActivity extends AppCompatActivity {
             String username = editUsername.getText().toString();
             String password = editPassword.getText().toString();
             String type = accountType.getSelectedItem().toString();
-
-            if (username.length() == 0) {
-                CharSequence error_username_blank = "Please enter username.";
-                editUsername.setError(error_username_blank);
-                editUsername.requestFocus();
-            }
-            else if (password.length() == 0) {
-                CharSequence error_password_blank = "Please enter password.";
-                editPassword.setError(error_password_blank);
-                editPassword.requestFocus();
-            }
-            else if (UserList.containsUser(username)) {
+            if (UserList.containsUser(username)) {
                 CharSequence error_username_exists = "Username already exists.";
                 editUsername.setError(error_username_exists);
                 editUsername.requestFocus();
-            } else if (type.equals("Location Employee")){
-                UserList.addUser(username, password, type);
-                Intent intent = new Intent(RegistrationActivity.this, AddEmployeeLocationActivity.class);
-                startActivity(intent);
-            } else {
-                UserList.addUser(username, password, type);
-//                SharedPreferences sharedPref = getSharedPreferences("userList", Context.MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPref.edit();
-//                editor.putString(username, password);
-//                editor.apply();
-                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
-                startActivity(intent);
+            }
+            if (validateUserAndPass(editUsername, editPassword)) {
+                if (type.equals("Location Employee")) {
+                    UserList.addUser(username, password, type);
+                    Intent intent = new Intent(RegistrationActivity.this, AddEmployeeLocationActivity.class);
+                    startActivity(intent);
+                } else {
+                    UserList.addUser(username, password, type);
+                    //SharedPreferences sharedPref = getSharedPreferences("userList", Context.MODE_PRIVATE);
+                    //SharedPreferences.Editor editor = sharedPref.edit();
+                    //editor.putString(username, password);
+                    //editor.apply();
+                    Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         }
         });
+    }
 
+    public static boolean validateUserAndPass(EditText editUsername, EditText editPassword) {
+        String username = editUsername.getText().toString();
+        String password = editPassword.getText().toString();
 
+        if (username.length() == 0) {
+            CharSequence error_username_blank = "Please enter username.";
+            editUsername.setError(error_username_blank);
+            editUsername.requestFocus();
+            return false;
+        }
+        else if (password.length() == 0) {
+            CharSequence error_password_blank = "Please enter password.";
+            editPassword.setError(error_password_blank);
+            editPassword.requestFocus();
+            return false;
+        }
+        return true;
     }
 }

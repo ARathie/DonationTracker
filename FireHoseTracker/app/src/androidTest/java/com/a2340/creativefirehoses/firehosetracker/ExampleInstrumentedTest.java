@@ -1,9 +1,17 @@
 package com.a2340.creativefirehoses.firehosetracker;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.widget.EditText;
 
+import com.a2340.creativefirehoses.firehosetracker.controllers.RegistrationActivity;
+import com.a2340.creativefirehoses.firehosetracker.controllers.WelcomeActivity;
+import com.a2340.creativefirehoses.firehosetracker.model.UserList;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,4 +31,44 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.a2340.creativefirehoses.firehosetracker", appContext.getPackageName());
     }
+
+    @Test
+    public void useValidateUserAndPass1() {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+
+        EditText editUsername = new EditText(appContext);
+        EditText editPassword = new EditText(appContext);
+
+        editUsername.setText("akristanto6");
+        editPassword.setText("akristanto6");
+
+        assertEquals(true, RegistrationActivity.validateUserAndPass(editUsername, editPassword));
+    }
+
+    @Test
+    public void useValidateUserAndPass2() {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+
+        EditText editUsername = new EditText(appContext);
+        EditText editPassword = new EditText(appContext);
+
+        editUsername.setText("");
+        editPassword.setText("akristanto6");
+
+        assertEquals(false, RegistrationActivity.validateUserAndPass(editUsername, editPassword));
+    }
+
+    @Test
+    public void useValidateUserAndPass3() {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+
+        EditText editUsername = new EditText(appContext);
+        EditText editPassword = new EditText(appContext);
+
+        editUsername.setText("akristanto6");
+        editPassword.setText("");
+
+        assertEquals(false, RegistrationActivity.validateUserAndPass(editUsername, editPassword));
+    }
+
 }
